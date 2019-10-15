@@ -8,6 +8,10 @@
         <variable
             name="click"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="age"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -16,10 +20,17 @@
         android:orientation="vertical">
 
         <com.guc.babyslife.widget.ToolBar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:rightType="string"
             app:title="@string/app_name" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{age??""}' />
 
         <RelativeLayout
             android:layout_width="match_parent"

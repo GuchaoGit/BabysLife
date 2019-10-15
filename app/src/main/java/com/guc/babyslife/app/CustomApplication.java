@@ -12,5 +12,6 @@ public class CustomApplication extends Application {
         super.onCreate();
         Profile.createInstance(this);
         Logger.isOpen = Profile.OPEN_LOG;//日志开关
+        SpManager.getInstance().updateBabies();
     }
 }
