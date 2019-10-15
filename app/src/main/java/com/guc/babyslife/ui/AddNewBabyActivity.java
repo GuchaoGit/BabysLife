@@ -3,6 +3,8 @@ package com.guc.babyslife.ui;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import com.guc.babyslife.R;
 import com.guc.babyslife.app.SpManager;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.model.Baby;
+import com.guc.babyslife.ui.adapter.AdapterBabies;
 
 import java.util.Calendar;
 
@@ -49,6 +52,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
     private String mBirth;
     private int mAge = 0;//天数
     private String mAgeDesc;//年龄描述
+    private AdapterBabies mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,14 @@ public class AddNewBabyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_baby);
         ButterKnife.bind(this);
         initView();
+        initRcv();
+    }
+
+    private void initRcv() {
+        RecyclerView recyclerView = findViewById(R.id.rcv_baby);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new AdapterBabies(this, SpManager.getInstance().getBabies());
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void initView() {
@@ -95,6 +107,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
             baby.ageDesc = mAgeDesc;
             SpManager.getInstance().saveBaby(baby);
             mNameEt.setText("");
+            mAdapter.update(SpManager.getInstance().getBabies());
             ToastUtils.toast("添加成功");
         }
     }

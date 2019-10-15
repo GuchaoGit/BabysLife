@@ -114,4 +114,16 @@
         android:text="@string/add"
         android:textColor="@color/colorWhite" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:padding="@dimen/dimen_10dp"
+        android:text="@string/has_add_baby" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_baby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

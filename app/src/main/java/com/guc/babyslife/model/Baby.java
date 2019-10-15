@@ -7,7 +7,7 @@ package com.guc.babyslife.model;
 public class Baby {
     public String uuid;//唯一标识
     public String name;
-    public int age;
+    public int age;//天数
     public int birthYear;
     public int birthMonth;//月0-11
     public int birthDay;

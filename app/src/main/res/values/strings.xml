@@ -12,4 +12,6 @@
     <string name="age">宝贝年龄</string>
     <string name="birth">出生日期</string>
     <string name="add">添加</string>
+
+    <string name="has_add_baby">已添加的宝贝</string>
 </resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.guc.babyslife.model.Baby" />
+
+        <variable
+            name="baby"
+            type="Baby" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_5dp">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dimen_50dp"
+            android:text='@{baby.name + "\n" + baby.birthday + "\n" + baby.ageDesc}' />
+    </LinearLayout>
+</layout>
