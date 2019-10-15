@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#588DFD</color>
+    <color name="colorPrimaryDark">#3474FD</color>
+    <color name="colorAccent">#588DFD</color>
+    <!--蓝色-->
+    <color name="colorBlueText">#316cd9</color>
+    <color name="colorBlue">#1886f4</color>
+    <color name="colorLightBlue">#CFE2E9</color>
+    <color name="colorLightBluePress">#C4DDE6</color>
+    <color name="colorDarkBlue">#1565C0</color>
+    <!--黑、灰色-->
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlackLight">#333333</color>
+    <color name="colorGray">#999999</color>
+    <color name="colorGrayDark">#666666</color>
+    <color name="colorGrayLighter">#eceaea</color>
+    <color name="colorTransGray">#f5f5f5</color>
+
+    <!--红色-->
+    <color name="colorRed">#ff3333</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorPink">#FFBBC8</color>
+    <color name="colorPinkPress">#FDADBC</color>
+
+</resources>

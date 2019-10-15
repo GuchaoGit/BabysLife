@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_header_root"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_title"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:id="@+id/rl_function_left"
+        android:layout_height="@dimen/height_title"
+        android:layout_width="@dimen/height_title">
+
+        <ImageView
+            android:id="@+id/iv_function_left"
+            android:layout_width="@dimen/dimen_20dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:background="@drawable/selector_btn_back" />
+
+        <TextView
+            android:id="@+id/tv_function_left_num"
+            style="@style/StyleCommonText.White"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:textSize="@dimen/smaller_text_size"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_common_header_title"
+        style="@style/ToolbarTitle"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
+        android:text="@string/str_nul" />
+
+    <RelativeLayout
+        android:id="@+id/rl_function_right"
+        android:layout_width="@dimen/height_title"
+        android:layout_height="@dimen/height_title"
+        android:visibility="gone"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:id="@+id/iv_function_right"
+            android:layout_width="@dimen/dimen_20dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_btn_more"
+            android:layout_marginRight="@dimen/dimen_10dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_right_function"
+        style="@style/StyleCommonText.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:maxWidth="@dimen/dimen_80dp"
+        android:singleLine="true"
+        android:padding="@dimen/dimen_3dp"
+        android:text="@string/str_add"
+        android:visibility="gone" />
+</RelativeLayout>

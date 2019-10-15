@@ -1,0 +1,112 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.Transparent">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <!--EditText样式-->
+    <style name="EditTextStyle">
+        <item name="android:textSize">@dimen/middle_text_size</item>
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor</item>
+        <item name="android:background">@drawable/ic_edit_text_default</item>
+    </style>
+
+    <style name="EditTextStyle.WithoutBg" parent="EditTextStyle">
+        <item name="android:background">@null</item>
+    </style>
+    <!--TextView样式-->
+    <!--默认TextView文字样式-->
+    <style name="StyleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+    </style>
+
+    <style name="StyleText.Dark" parent="StyleText">
+        <item name="android:textColor">@color/colorBlackLight</item>
+    </style>
+    <style name="StyleText.Gray" parent="StyleText">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+
+    <style name="StyleText.White" parent="StyleText">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="StyleText.Blue" parent="StyleText">
+        <item name="android:textColor">@color/colorBlueText</item>
+    </style>
+    <!--Button样式-->
+    <style name="StyleButton" parent="StyleText">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">@dimen/common_padding</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:background">@drawable/selector_btn_blue</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--宽高设置：wrap -wrap -->
+    <style name="Dimension_ww">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--宽高设置：match -wrap -->
+    <style name="Dimension_mw">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="ToolbarTitle" parent="Dimension_ww">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+    </style>
+    <!--默认字体 颜色：黑色 字体：14sp-->
+    <style name="StyleCommonText" parent="Dimension_ww">
+        <item name="android:textColor">@color/colorBlackLight</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="StyleCommonText.bold" parent="StyleCommonText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleCommonText.White" parent="StyleCommonText">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="StyleCommonText.Red" parent="StyleCommonText">
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
+    <style name="StyleCommonText.GrayDark" parent="StyleCommonText">
+        <item name="android:textColor">@color/colorGrayDark</item>
+    </style>
+
+    <style name="StyleCommonText.Gray" parent="StyleCommonText">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+    <!--通用按钮样式  蓝色背景，白色字体 字号:16sp -->
+    <style name="StyleCommonBtn" parent="Dimension_mw">
+        <item name="android:layout_height">@dimen/dimen_45dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+        <item name="android:background">@drawable/selector_btn_blue</item>
+    </style>
+    <!--横向分割线-->
+    <style name="StyleDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.75dp</item>
+        <item name="android:background">@color/colorGray</item>
+    </style>
+
+    <style name="StyleDivider.Light" parent="StyleDivider">
+        <item name="android:background">@color/colorGrayLighter</item>
+    </style>
+</resources>

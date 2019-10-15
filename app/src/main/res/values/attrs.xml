@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="title" format="reference|string"/>
+    <attr name="titleTextColor" format="color"/>
+    <declare-styleable name="ViewNoData">
+        <attr name="hintIcon" format="reference" />
+        <attr name="hint1" format="reference|string" />
+        <attr name="hint2" format="reference|string" />
+        <attr name="mulLineHint" format="boolean" />
+        <attr name="topIconMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ToolBar">
+        <attr name="leftType">
+            <enum name="none" value="0"/>
+            <enum name="finish" value="1"/>
+            <enum name="function" value="2"/>
+        </attr>
+        <attr name="leftIcon" format="reference"/>
+        <attr name="title" />
+        <attr name="titleTextColor"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="rightType">
+            <enum name="none" value = "0"/>
+            <enum name="icon" value = "1"/>
+            <enum name="string" value = "2"/>
+        </attr>
+        <attr name="rightIcon" format="reference"/>
+        <attr name="rightString" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CoffeeHeader">
+        <attr name="coffeeColor" format="color" />
+        <attr name="cupBodyColor" format="color" />
+        <attr name="cupBottomColor" format="color" />
+        <attr name="handColor" format="color" />
+        <attr name="stickColor" format="color" />
+        <attr name="cupRadius" format="dimension" />
+    </declare-styleable>
+</resources>

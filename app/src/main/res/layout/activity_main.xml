@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data class="MainBinding">
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.guc.babyslife.widget.ToolBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rightType="string"
+            app:title="@string/app_name" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_prince"
+                android:layout_width="@dimen/dimen_160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/dra_btn_prince"
+                android:drawableLeft="@drawable/prince"
+                android:drawablePadding="@dimen/dimen_20dp"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/prince"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/larger_text_size"
+                android:textStyle="bold|italic"
+                android:onClick="@{(view)->click.onClick(view)}"/>
+
+            <Button
+                android:id="@+id/btn_princess"
+                android:layout_width="@dimen/dimen_160dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_prince"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_50dp"
+                android:background="@drawable/dra_btn_princess"
+                android:drawableLeft="@drawable/princess"
+                android:drawablePadding="@dimen/dimen_20dp"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/princess"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/larger_text_size"
+                android:textStyle="bold|italic"
+                android:onClick="@{(view)->click.onClick(view)}"/>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

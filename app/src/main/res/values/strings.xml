@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BabyLife</string>
+    <string name="str_nul">暂无</string>
+    <string name="str_add">新增</string>
+    <string name="prince">小王子</string>
+    <string name="princess">小公主</string>
+</resources>
