@@ -7,11 +7,20 @@
     <string name="new_baby">添加小宝贝</string>
     <string name="please_input_name">请输入宝贝姓名</string>
     <string name="please_sel_birth">请选择出生日期</string>
+    <string name="please_sel_measure_date">请选择测量日期</string>
     <string name="name">宝贝姓名</string>
     <string name="sex">宝贝性别</string>
     <string name="age">宝贝年龄</string>
     <string name="birth">出生日期</string>
+    <string name="measure_date">测量日期</string>
+    <string name="day">天</string>
     <string name="add">添加</string>
+    <string name="height">身高</string>
+    <string name="weight">体重</string>
 
     <string name="has_add_baby">已添加的宝贝</string>
+    <string name="grow_data_records">成长记录</string>
+    <string name="baby_detail">宝贝信息</string>
+    <string name="please_input">请输入</string>
+    <string name="cancel">取消</string>
 </resources>

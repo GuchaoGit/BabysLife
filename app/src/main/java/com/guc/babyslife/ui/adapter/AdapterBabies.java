@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.guc.babyslife.R;
 import com.guc.babyslife.databinding.ItemBabyBinding;
 import com.guc.babyslife.model.Baby;
+import com.guc.babyslife.ui.BabyDetailActivity;
 
 import java.util.List;
 
@@ -44,6 +45,18 @@ public class AdapterBabies extends RecyclerView.Adapter<CommonViewHolder> {
         ItemBabyBinding binding = DataBindingUtil.getBinding(viewHolder.itemView);
         binding.setBaby(babies.get(i));
         binding.executePendingBindings();
+        viewHolder.setCommonClickListener(new CommonViewHolder.onItemCommonClickListener() {
+            @Override
+            public void onItemClickListener(int position) {
+                BabyDetailActivity.jump(context, babies.get(position));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position) {
+
+            }
+        });
+
     }
 
     @Override

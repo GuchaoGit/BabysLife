@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -36,8 +35,7 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
     @Override
     @NonNull
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(mLayoutId, parent, false);
-        return new CommonViewHolder(itemView);
+        return createViewHolder(mLayoutId, parent, viewType);
     }
 
     @Override
@@ -56,6 +54,10 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
             }
         });
+    }
+
+    public T getItem(int position) {
+        return mDataList == null ? null : mDataList.get(position);
     }
 
     @Override
@@ -79,4 +81,6 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
     }
 
     public abstract void bindData(CommonViewHolder holder, T data, int position);
+
+    public abstract CommonViewHolder createViewHolder(int layoutId, @NonNull ViewGroup parent, int viewType);
 }

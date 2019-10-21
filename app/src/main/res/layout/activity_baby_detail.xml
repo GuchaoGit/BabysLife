@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.BabyDetailActivity">
+
+    <data class="BabyDetailBinding">
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="detail"
+            type="com.guc.babyslife.model.Baby" />
+
+        <variable
+            name="recordAdapter"
+            type="com.guc.babyslife.ui.adapter.AdapterRecords" />
+
+        <variable
+            name="itemClickListener"
+            type="com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter.ItemClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.guc.babyslife.widget.ToolBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftType="finish"
+            app:title="@string/baby_detail" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_10dp">
+
+            <TextView
+                style="@style/StyleCommonText.GrayDark"
+                android:text="@string/name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:text="@{detail.name}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_10dp">
+
+            <TextView
+                style="@style/StyleCommonText.GrayDark"
+                android:text="@string/sex" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:text='@{"1".equals(detail.sex)?@string/prince:@string/princess}' />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_10dp">
+
+            <TextView
+                style="@style/StyleCommonText.GrayDark"
+                android:text="@string/birth" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:text='@{detail.birthday}' />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_10dp">
+
+            <TextView
+                style="@style/StyleCommonText.GrayDark"
+                android:text="@string/age" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:text='@{detail.age +  @string/day +"\n" +detail.ageDesc}' />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/grow_data_records" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/dra_btn_prince"
+                android:onClick="@{(view)->click.onClick(view)}"
+                android:text="@string/add"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_baby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onItemClick="@{itemClickListener}"
+            app:adapter="@{recordAdapter}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    </LinearLayout>
+</layout>
