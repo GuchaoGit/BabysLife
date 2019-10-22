@@ -18,9 +18,32 @@ android {
     dataBinding {
         enabled = true
     }
+
+    signingConfigs {
+        release {
+            storeFile file('../guc.jks')
+            keyAlias 'key0'
+            keyPassword '111111'
+            storePassword 'guc0913'
+            // 如果要支持最新版的系统 Android 7.0
+            // 这一行必须加，否则安装时会提示没有签名
+            // 作用是只使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled false
+        }
+    }
     buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            debuggable true
+        }
         release {
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
