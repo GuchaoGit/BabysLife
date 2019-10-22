@@ -40,6 +40,25 @@ public class SpManager {
         return mInstance;
     }
 
+    /**
+     * 备份用
+     *
+     * @return List字符串
+     */
+    public String getBabiesStr() {
+        return mSharedPreferences.getString(KEY_BABIES, "[]");
+    }
+
+    /**
+     * 备份恢复用
+     *
+     * @param babiesStr 数据
+     */
+    public void setBabies(String babiesStr) {
+        SharedPreferences.Editor edit = mSharedPreferences.edit();
+        edit.putString(KEY_BABIES, babiesStr);
+        edit.apply();
+    }
     public List<Baby> getBabies() {
         String babiesStr = mSharedPreferences.getString(KEY_BABIES, "[]");
         return mGson.fromJson(babiesStr, new TypeToken<List<Baby>>() {

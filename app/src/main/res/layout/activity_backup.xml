@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.BackupActivity">
+
+    <data class="BackupBinding">
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="backupInfo"
+            type="com.guc.babyslife.model.BackupInfo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.guc.babyslife.widget.ToolBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftType="finish"
+            app:title="@string/backup_recovery" />
+
+        <Button
+            android:id="@+id/btn_backup"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_50dp"
+            android:background="@drawable/dra_btn_prince"
+            android:onClick="@{(view)->click.onClick(view)}"
+            android:text="@string/backup"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tv_backup_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view)->click.onClick(view)}"
+            android:text='@{backupInfo.hasBackup ?(@string/backup_path + backupInfo.path + "\n"+@string/file_name + backupInfo.fileName +"\n"+backupInfo.time):@string/not_backup}' />
+    </LinearLayout>
+</layout>

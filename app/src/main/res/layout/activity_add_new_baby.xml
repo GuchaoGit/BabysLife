@@ -8,9 +8,12 @@
     tools:context=".ui.AddNewBabyActivity">
 
     <com.guc.babyslife.widget.ToolBar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:leftType="finish"
+        app:rightString="@string/backup"
+        app:rightType="string"
         app:title="@string/new_baby" />
 
     <LinearLayout

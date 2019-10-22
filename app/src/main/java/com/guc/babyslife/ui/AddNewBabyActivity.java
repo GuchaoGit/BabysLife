@@ -1,6 +1,7 @@
 package com.guc.babyslife.ui;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.guc.babyslife.app.SpManager;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.model.Baby;
 import com.guc.babyslife.ui.adapter.AdapterBabies;
+import com.guc.babyslife.widget.ToolBar;
 
 import java.util.Calendar;
 
@@ -46,6 +48,10 @@ public class AddNewBabyActivity extends AppCompatActivity {
     TextView mSelAgeTv;
     @BindView(R.id.add_btn)
     Button mAddBtn;
+    @BindView(R.id.toolbar)
+    ToolBar mToolbar;
+    @BindView(R.id.rcv_baby)
+    RecyclerView mRcvBaby;
     private DatePickerDialog mDatePickerDialog;
     private int mBirthYear, mBirthMonth, mBirthDay;
     private int mNowYear, mNowMonth, mNowDay;
@@ -75,6 +81,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
         mNowYear = mBirthYear = calendar.get(Calendar.YEAR);
         mNowMonth = mBirthMonth = calendar.get(Calendar.MONTH);
         mNowDay = mBirthDay = calendar.get(Calendar.DAY_OF_MONTH);
+        mToolbar.setOnRightClickedListener(() -> startActivity(new Intent(this, BackupActivity.class)));
     }
 
     @OnClick({R.id.sel_birth_tv, R.id.add_btn, R.id.sel_age_tv})

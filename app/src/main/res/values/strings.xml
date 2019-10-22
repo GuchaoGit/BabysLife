@@ -23,4 +23,10 @@
     <string name="baby_detail">宝贝信息</string>
     <string name="please_input">请输入</string>
     <string name="cancel">取消</string>
+    <string name="backup_recovery">备份与恢复</string>
+    <string name="backup">备份</string>
+    <string name="recovery">恢复</string>
+    <string name="backup_path">备份路径:</string>
+    <string name="not_backup">尚未备份</string>
+    <string name="file_name">文件名:</string>
 </resources>
