@@ -48,7 +48,7 @@ public class DBUtil {
      * @return GrowData
      */
     public List<GrowData> getGrowDataByUuid(@NonNull String uuid) {
-        return mGrowDataDao.queryBuilder().where(GrowDataDao.Properties.Uuid.eq(uuid))
+        return mGrowDataDao.queryBuilder().where(GrowDataDao.Properties.Uuid.eq(uuid)).orderDesc(GrowDataDao.Properties.AddTime)
                 .build().list();
     }
 
