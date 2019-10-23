@@ -51,13 +51,18 @@ public class SpManager {
 
     /**
      * 备份恢复用
-     *
-     * @param babiesStr 数据
      */
-    public void setBabies(String babiesStr) {
+    public boolean restoreBabies(List<Baby> babies) {
+        if (babies == null || babies.size() == 0) return false;
+        for (Baby baby : babies) {
+            caculateAge(baby, Calendar.getInstance());
+        }
         SharedPreferences.Editor edit = mSharedPreferences.edit();
+        String babiesStr = mGson.toJson(babies);
+        Logger.e(TAG, babiesStr);
         edit.putString(KEY_BABIES, babiesStr);
         edit.apply();
+        return true;
     }
 
     public List<Baby> getBabies() {

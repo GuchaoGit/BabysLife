@@ -6,6 +6,7 @@
 
     <data class="BackupBinding">
 
+        <import type="android.view.View" />
         <variable
             name="click"
             type="android.view.View.OnClickListener" />
@@ -69,5 +70,17 @@
             android:layout_marginTop="@dimen/dimen_10dp"
             android:onClick="@{(view)->click.onClick(view)}"
             android:text='@{backupInfo4Db.hasBackup ?(@string/backup_path + backupInfo4Db.path + "\n"+@string/file_name + backupInfo4Db.fileName +"\n"+backupInfo4Db.time):@string/not_backup_db}' />
+
+        <Button
+            android:id="@+id/btn_restore"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_50dp"
+            android:background="@drawable/dra_btn_princess"
+            android:onClick="@{(view)->click.onClick(view)}"
+            android:text="@string/recovery"
+            android:textColor="@color/colorWhite"
+            android:visibility='@{backupInfo.hasBackup ? View.VISIBLE:View.GONE}' />
     </LinearLayout>
 </layout>

@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.math.BigDecimal;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -157,10 +158,12 @@ public class FileUtils {
      *
      * @param src
      * @param dst
+     * @return true 成功
      */
-    public static void copyFile(File src, File dst) {
+    public static boolean copyFile(File src, File dst) {
         FileChannel inChannel = null;
         FileChannel outChannel = null;
+        boolean success = false;
         try {
             if (!dst.exists()) {
                 dst.getParentFile().mkdirs();
@@ -169,7 +172,9 @@ public class FileUtils {
             inChannel = new FileInputStream(src).getChannel();
             outChannel = new FileOutputStream(dst).getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
+            success = true;
         } catch (IOException e) {
+            success = false;
             e.printStackTrace();
             dst.delete();
             Logger.e(TAG, "文件复制失败");
@@ -181,5 +186,67 @@ public class FileUtils {
                 e.printStackTrace();
             }
         }
+        return success;
+    }
+
+    /**
+     * 格式化单位
+     *
+     * @param size b
+     * @return 格式化后的单位 K/M/GB
+     */
+    public static String getFormatSize(double size) {
+        double kiloByte = size / 1024;
+        if (kiloByte < 1) {
+            return "0K";
+        }
+
+        double megaByte = kiloByte / 1024;
+        if (megaByte < 1) {
+            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
+            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "K";
+        }
+
+        double gigaByte = megaByte / 1024;
+        if (gigaByte < 1) {
+            BigDecimal result2 = new BigDecimal(Double.toString(megaByte));
+            return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "M";
+        }
+
+        double teraBytes = gigaByte / 1024;
+        if (teraBytes < 1) {
+            BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));
+            return result3.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "GB";
+        }
+        BigDecimal result4 = new BigDecimal(teraBytes);
+        return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
+                + "TB";
+    }
+
+    /**
+     * 计算文件夹的大小
+     *
+     * @param file
+     * @return size 单位:b
+     */
+    public static long getFolderSize(File file) {
+        long size = 0;
+        try {
+            File[] fileList = file.listFiles();
+            for (int i = 0; i < fileList.length; i++) {
+                // 如果下面还有文件
+                if (fileList[i].isDirectory()) {
+                    size = size + getFolderSize(fileList[i]);
+                } else {
+                    size = size + fileList[i].length();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return size;
     }
 }

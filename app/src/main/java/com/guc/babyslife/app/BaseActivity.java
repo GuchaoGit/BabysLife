@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.guc.babyslife.system.SystemManager;
 import com.guc.babyslife.system.SystemPages;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,6 +29,8 @@ import java.util.List;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_SETTING = 2;
+    private static final String DEF_DENIED_MESSAGE = "您拒绝权限申请，此功能将不能正常使用，您可以去设置页面重新授权";
+    private static final String DEF_DENIED_CLOSE_BTN_TEXT = "关闭";
     private static final String DEF_RATIONAL_MESSAGE = "此功能需要您授权，否则将不能正常使用";
     private static final String DEF_RATIONAL_BTN_TEXT = "去设置";
     private static final int REQUEST_CODE = 1;
@@ -57,6 +61,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_CODE_SETTING:
                 requestRuntimePermissions(mPermissions, mListener);
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CODE:
+                LinkedList<String> grantedPermissions = new LinkedList<>();
+                LinkedList<String> deniedPermissions = new LinkedList<>();
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                        grantedPermissions.add(permission);
+                    else deniedPermissions.add(permission);
+                }
+                //全部允许才回调 onGranted 否则只要有一个拒绝都回调 onDenied
+                if (!grantedPermissions.isEmpty() && deniedPermissions.isEmpty()) {
+                    if (mListener != null)
+                        mListener.onGranted();
+                } else if (!deniedPermissions.isEmpty()) {
+                    showDeniedDialog(deniedPermissions);
+                }
                 break;
         }
     }
@@ -92,17 +120,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             rationale = rationale || shouldShowRequestPermissionRationale(permission);
         }
         String[] permissions = mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]);
-//        if (rationale) {
-        requestPermissions(permissions, REQUEST_CODE);
-//        } else {
-//            showRationalDialog(permissions);
-//        }
+        if (rationale) {
+            showRationalDialog(permissions);
+        } else {
+            requestPermissions(permissions, REQUEST_CODE);
+        }
     }
 
     private synchronized void showRationalDialog(final String[] permissions) {
         new AlertDialog.Builder(this)
                 .setMessage(DEF_RATIONAL_MESSAGE)
                 .setCancelable(false)
+                .setNegativeButton(DEF_DENIED_CLOSE_BTN_TEXT, (DialogInterface dialog, int which) ->
+                        this.finish())
                 .setPositiveButton(DEF_RATIONAL_BTN_TEXT, (DialogInterface dialog, int which) ->
                         startSetting()
                 ).show();
@@ -127,6 +157,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 拒绝权限提示框
+     *
+     * @param permissions
+     */
+    private synchronized void showDeniedDialog(final List<String> permissions) {
+        new AlertDialog.Builder(this)
+                .setMessage(DEF_DENIED_MESSAGE)
+                .setCancelable(false)
+                .setNegativeButton(DEF_DENIED_CLOSE_BTN_TEXT, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mListener != null) {
+                            mListener.onDenied(permissions);
+                        }
+                    }
+                })
+                .setPositiveButton(DEF_RATIONAL_BTN_TEXT, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startSetting();
+                    }
+                }).show();
+    }
 
     public interface PermissionListener {
         void onGranted();
