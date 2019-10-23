@@ -83,3 +83,13 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2' // 添加库
 
 }
+
+def buildTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+8"))
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "BabyLife_${buildTime()}_${variant.name}_V${variant.versionName}.apk"
+    }
+}
