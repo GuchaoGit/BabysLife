@@ -57,6 +57,11 @@ greendao {
     daoPackage 'com.guc.babyslife.greendao'//设置DaoMaster、DaoSession、Dao包名
 //    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
 }
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -81,6 +86,9 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'//没有使用特殊Header，可以不加这行
     //添加greendao数据库支持
     implementation 'org.greenrobot:greendao:3.2.2' // 添加库
+
+    //腾讯广告
+    implementation(name: 'GDTSDK.union.4.90.960', ext: 'aar')
 
 }
 

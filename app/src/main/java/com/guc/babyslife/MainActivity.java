@@ -3,15 +3,15 @@ package com.guc.babyslife;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.guc.babyslife.app.BaseActivity;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.databinding.MainBinding;
 import com.guc.babyslife.ui.AddNewBabyActivity;
 import com.guc.babyslife.widget.ToolBar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private MainBinding mBinding;
     private ToolBar mToolBar;
 
@@ -34,6 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ToastUtils.toast("小公主");
                 break;
         }
-
     }
+
 }
