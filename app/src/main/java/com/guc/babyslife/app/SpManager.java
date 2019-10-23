@@ -59,6 +59,7 @@ public class SpManager {
         edit.putString(KEY_BABIES, babiesStr);
         edit.apply();
     }
+
     public List<Baby> getBabies() {
         String babiesStr = mSharedPreferences.getString(KEY_BABIES, "[]");
         return mGson.fromJson(babiesStr, new TypeToken<List<Baby>>() {
@@ -66,7 +67,8 @@ public class SpManager {
     }
 
     public void saveBaby(Baby baby) {
-        baby.uuid = UUID.randomUUID().toString();
+        if (baby.uuid == null)
+            baby.uuid = UUID.randomUUID().toString();
         List<Baby> babies = getBabies();
         babies.add(baby);
         SharedPreferences.Editor edit = mSharedPreferences.edit();

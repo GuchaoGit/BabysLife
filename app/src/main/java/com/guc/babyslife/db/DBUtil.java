@@ -16,7 +16,7 @@ import java.util.List;
  * 描述：数据库工具
  */
 public class DBUtil {
-    private static final String DB_NAME = "grow_data";
+    public static final String DB_NAME = "grow_data";
     private static DBUtil sDB;
     private static DaoSession mDaoSession;
     private DaoMaster.DevOpenHelper mOpenHelper;

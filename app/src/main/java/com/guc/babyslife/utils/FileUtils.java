@@ -1,5 +1,6 @@
 package com.guc.babyslife.utils;
 
+import com.guc.babyslife.app.Logger;
 import com.guc.babyslife.app.Profile;
 import com.guc.babyslife.model.BackupInfo;
 
@@ -11,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -20,10 +22,11 @@ import java.util.Locale;
  * 描述：文件处理工具
  */
 public class FileUtils {
+    private static final String TAG = "FileUtils";
     private static SimpleDateFormat mSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
 
-    public static BackupInfo getBackupInfo() {
-        File file = new File(Profile.getInstance().getBackupPath(), Profile.FN_BABY);
+    public static BackupInfo getBackupInfo(String fileName) {
+        File file = new File(Profile.getInstance().getBackupPath(), fileName);
         boolean hasBackup = file.exists();
         BackupInfo info = new BackupInfo();
         info.hasBackup = hasBackup;
@@ -146,6 +149,37 @@ public class FileUtils {
     public static void deleteDir(String f) {
         if (f != null && f.length() > 0) {
             deleteDir(new File(f));
+        }
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param src
+     * @param dst
+     */
+    public static void copyFile(File src, File dst) {
+        FileChannel inChannel = null;
+        FileChannel outChannel = null;
+        try {
+            if (!dst.exists()) {
+                dst.getParentFile().mkdirs();
+                dst.createNewFile();
+            }
+            inChannel = new FileInputStream(src).getChannel();
+            outChannel = new FileOutputStream(dst).getChannel();
+            inChannel.transferTo(0, inChannel.size(), outChannel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            dst.delete();
+            Logger.e(TAG, "文件复制失败");
+        } finally {
+            try {
+                if (inChannel != null) inChannel.close();
+                if (outChannel != null) outChannel.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

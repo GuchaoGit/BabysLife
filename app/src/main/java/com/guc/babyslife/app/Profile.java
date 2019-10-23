@@ -3,6 +3,8 @@ package com.guc.babyslife.app;
 import android.content.Context;
 import android.os.Environment;
 
+import com.guc.babyslife.db.DBUtil;
+
 import java.io.File;
 
 /**
@@ -11,13 +13,16 @@ import java.io.File;
  */
 public class Profile {
     public static final String FN_BABY = "babies.bak";
+    public static final String FN_DB = DBUtil.DB_NAME + ".bak";
     private static final String TAG = "Profile";
     private static final String ROOT_DIR = "Backup4BabyLife";    // 根目录
+    private String mDatabasePath;
     private static Profile mInstance;
     private String mBackupPath;
     public Context mContext;
     static final boolean OPEN_LOG = true;//true : 开启  false :关闭
-    private Profile(Context context){
+
+    private Profile(Context context) {
         this.mContext = context.getApplicationContext();
         if (isSDCardExits()) {
             StringBuffer sb = new StringBuffer();
@@ -27,19 +32,22 @@ public class Profile {
             mBackupPath = sb.toString();
         }
         Logger.e(TAG, mBackupPath);
+        mDatabasePath = mContext.getDatabasePath(DBUtil.DB_NAME).getAbsolutePath();
+        Logger.e(TAG, mDatabasePath);
     }
 
-    static void createInstance(Context context){
-        if (mInstance == null){
-            synchronized (Profile.class){
-                if (mInstance == null){
+    static void createInstance(Context context) {
+        if (mInstance == null) {
+            synchronized (Profile.class) {
+                if (mInstance == null) {
                     mInstance = new Profile(context);
                 }
             }
-        }else {
+        } else {
             mInstance.mContext = context;
         }
     }
+
     public static Profile getInstance() {
         if (mInstance == null) {
             throw new RuntimeException("Profile is not created");
@@ -52,6 +60,9 @@ public class Profile {
         return mBackupPath;
     }
 
+    public String getDatabasePath() {
+        return mDatabasePath;
+    }
     private boolean isSDCardExits() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }

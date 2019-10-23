@@ -13,6 +13,10 @@
         <variable
             name="backupInfo"
             type="com.guc.babyslife.model.BackupInfo" />
+
+        <variable
+            name="backupInfo4Db"
+            type="com.guc.babyslife.model.BackupInfo" />
     </data>
 
     <LinearLayout
@@ -37,11 +41,33 @@
             android:text="@string/backup"
             android:textColor="@color/colorWhite" />
 
+        <Button
+            android:id="@+id/btn_backup_db"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dimen_50dp"
+            android:layout_marginRight="@dimen/dimen_50dp"
+            android:layout_marginBottom="@dimen/dimen_50dp"
+            android:background="@drawable/dra_btn_prince"
+            android:onClick="@{(view)->click.onClick(view)}"
+            android:text="@string/backup_db"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/tv_backup_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{(view)->click.onClick(view)}"
             android:text='@{backupInfo.hasBackup ?(@string/backup_path + backupInfo.path + "\n"+@string/file_name + backupInfo.fileName +"\n"+backupInfo.time):@string/not_backup}' />
+
+        <TextView
+            android:id="@+id/tv_backup_info_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:onClick="@{(view)->click.onClick(view)}"
+            android:text='@{backupInfo4Db.hasBackup ?(@string/backup_path + backupInfo4Db.path + "\n"+@string/file_name + backupInfo4Db.fileName +"\n"+backupInfo4Db.time):@string/not_backup_db}' />
     </LinearLayout>
 </layout>

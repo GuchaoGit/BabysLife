@@ -7,11 +7,13 @@ import android.view.View;
 
 import com.guc.babyslife.R;
 import com.guc.babyslife.app.BaseActivity;
+import com.guc.babyslife.app.Profile;
 import com.guc.babyslife.app.SpManager;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.databinding.BackupBinding;
 import com.guc.babyslife.utils.FileUtils;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -31,7 +33,8 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
 
     @Override
     public void onGranted() {
-        mBinding.setBackupInfo(FileUtils.getBackupInfo());
+        mBinding.setBackupInfo(FileUtils.getBackupInfo(Profile.FN_BABY));
+        mBinding.setBackupInfo4Db(FileUtils.getBackupInfo(Profile.FN_DB));
     }
 
     @Override
@@ -45,14 +48,18 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
         switch (v.getId()) {
             case R.id.btn_backup:
                 saveBabies2File();
-                break;
-            case R.id.tv_backup_info:
+                backupDB();
+                onGranted();
                 break;
         }
     }
 
+    //备份数据库
+    private void backupDB() {
+        FileUtils.copyFile(new File(Profile.getInstance().getDatabasePath()), new File(Profile.getInstance().getBackupPath(), Profile.FN_DB));
+    }
+
     private void saveBabies2File() {
-        String fileName = FileUtils.writeStr2File(SpManager.getInstance().getBabiesStr());
-        ToastUtils.toast(fileName);
+        FileUtils.writeStr2File(SpManager.getInstance().getBabiesStr());
     }
 }
