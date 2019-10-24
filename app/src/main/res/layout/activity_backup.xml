@@ -18,6 +18,10 @@
         <variable
             name="backupInfo4Db"
             type="com.guc.babyslife.model.BackupInfo" />
+
+        <variable
+            name="leftClick"
+            type="com.guc.babyslife.widget.ToolBar.OnLeftClickedListener" />
     </data>
 
     <LinearLayout
@@ -28,7 +32,8 @@
         <com.guc.babyslife.widget.ToolBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:leftType="finish"
+            app:leftType="function"
+            app:onLeftClickedListener="@{leftClick}"
             app:title="@string/backup_recovery" />
 
         <Button

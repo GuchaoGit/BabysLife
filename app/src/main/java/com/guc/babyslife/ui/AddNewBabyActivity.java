@@ -3,6 +3,7 @@ package com.guc.babyslife.ui;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ import butterknife.OnClick;
  */
 public class AddNewBabyActivity extends AppCompatActivity {
     private static final String TAG = "AddNewBabyActivity";
+    private static final int REQUEST_CODE = 0X39;
     @BindView(R.id.name_et)
     EditText mNameEt;
     @BindView(R.id.rb_prince)
@@ -81,7 +83,15 @@ public class AddNewBabyActivity extends AppCompatActivity {
         mNowYear = mBirthYear = calendar.get(Calendar.YEAR);
         mNowMonth = mBirthMonth = calendar.get(Calendar.MONTH);
         mNowDay = mBirthDay = calendar.get(Calendar.DAY_OF_MONTH);
-        mToolbar.setOnRightClickedListener(() -> startActivity(new Intent(this, BackupActivity.class)));
+        mToolbar.setOnRightClickedListener(() -> startActivityForResult(new Intent(this, BackupActivity.class), REQUEST_CODE));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            boolean needUpdate = data.getBooleanExtra("needUpdate", false);
+            if (needUpdate) update();
+        }
     }
 
     @OnClick({R.id.sel_birth_tv, R.id.add_btn, R.id.sel_age_tv})
@@ -114,9 +124,14 @@ public class AddNewBabyActivity extends AppCompatActivity {
             baby.ageDesc = mAgeDesc;
             SpManager.getInstance().saveBaby(baby);
             mNameEt.setText("");
-            mAdapter.update(SpManager.getInstance().getBabies());
+            update();
             ToastUtils.toast("添加成功");
         }
+    }
+
+    //更新列表
+    private void update() {
+        mAdapter.update(SpManager.getInstance().getBabies());
     }
 
     //计算年龄
