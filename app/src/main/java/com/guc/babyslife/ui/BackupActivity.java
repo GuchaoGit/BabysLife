@@ -1,8 +1,10 @@
 package com.guc.babyslife.ui;
 
 import android.Manifest;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -18,6 +20,7 @@ import com.guc.babyslife.databinding.BackupBinding;
 import com.guc.babyslife.model.Baby;
 import com.guc.babyslife.model.BackupInfo;
 import com.guc.babyslife.utils.FileUtils;
+import com.guc.babyslife.widget.ToolBar;
 
 import java.io.File;
 import java.util.List;
@@ -25,16 +28,18 @@ import java.util.List;
 /**
  * 备份操作
  */
-public class BackupActivity extends BaseActivity implements BaseActivity.PermissionListener, View.OnClickListener {
+public class BackupActivity extends BaseActivity implements BaseActivity.PermissionListener, View.OnClickListener, ToolBar.OnLeftClickedListener {
     private static final String TAG = "BackupActivity";
     private BackupBinding mBinding;
     private BackupInfo mBakBaby, mBakDb;
+    private boolean needUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_backup);
         mBinding.setClick(this);
+        mBinding.setLeftClick(this);
         requestRuntimePermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, this);
     }
 
@@ -61,22 +66,15 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
                 onGranted();
                 break;
             case R.id.btn_restore:
-                String spBaby = FileUtils.readFile2Str(new File(mBakBaby.path, mBakBaby.fileName));
-                Logger.e(TAG, spBaby);
-                try {
-                    List<Baby> babies = new Gson().fromJson(spBaby, new TypeToken<List<Baby>>() {
-                    }.getType());
-                    boolean success = SpManager.getInstance().restoreBabies(babies);
-                    if (success) {
-                        FileUtils.copyFile(new File(mBakDb.path, mBakDb.fileName), new File(Profile.getInstance().getDatabasePath()));
-                        ToastUtils.toast("恢复成功");
-                    } else {
-                        ToastUtils.toast("恢复0条数据");
-                    }
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                    ToastUtils.toast("恢复失败");
-                }
+                new AlertDialog.Builder(this).setTitle(getString(R.string.warning))
+                        .setMessage(getString(R.string.warning_restore_data))
+                        .setNegativeButton(getString(R.string.cancel), (dialog, which) ->
+                                dialog.dismiss())
+                        .setPositiveButton(getString(R.string.sure), (dialog, which) -> {
+                            restoreData();
+                            dialog.dismiss();
+                        }).create().show();
+
                 break;
         }
     }
@@ -88,5 +86,41 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
 
     private void saveBabies2File() {
         FileUtils.writeStr2File(SpManager.getInstance().getBabiesStr());
+    }
+
+    /**
+     * 恢复备份数据
+     */
+    private void restoreData() {
+        String spBaby = FileUtils.readFile2Str(new File(mBakBaby.path, mBakBaby.fileName));
+        Logger.e(TAG, spBaby);
+        try {
+            List<Baby> babies = new Gson().fromJson(spBaby, new TypeToken<List<Baby>>() {
+            }.getType());
+            boolean success = SpManager.getInstance().restoreBabies(babies);
+            if (success) {
+                FileUtils.copyFile(new File(mBakDb.path, mBakDb.fileName), new File(Profile.getInstance().getDatabasePath()));
+                ToastUtils.toast("恢复成功");
+                needUpdate = true;
+            } else {
+                ToastUtils.toast("恢复0条数据");
+            }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            ToastUtils.toast("恢复失败");
+        }
+    }
+
+    @Override
+    public void onLeftClicked() {
+        Intent intent = new Intent();
+        intent.putExtra("needUpdate", needUpdate);
+        setResult(RESULT_OK, intent);
+        this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onLeftClicked();
     }
 }
