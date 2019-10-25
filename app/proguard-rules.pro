@@ -40,7 +40,8 @@
 -dontnote rx.internal.util.PlatformDependent
 -dontwarn android.app.**
 -keep class android.app.** { *;}
--keepclassmembers public class com.guc.babyslife.model.**{ <fields>; } #不混淆参数
+
+
 #-------------------------------------------基本不用动区域--------------------------------------------
 #---------------------------------基本指令区----------------------------------
 -optimizationpasses 5
