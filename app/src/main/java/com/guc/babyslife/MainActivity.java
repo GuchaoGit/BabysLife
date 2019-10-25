@@ -7,18 +7,21 @@ import android.view.View;
 
 import com.guc.babyslife.app.BaseActivity;
 import com.guc.babyslife.app.Constants;
+import com.guc.babyslife.app.Logger;
 import com.guc.babyslife.databinding.MainBinding;
 import com.guc.babyslife.ui.AddNewBabyActivity;
 import com.guc.babyslife.ui.StdDataDetailActivity;
 import com.guc.babyslife.widget.ToolBar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
     private MainBinding mBinding;
     private ToolBar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.e(TAG, "onCreate" + System.currentTimeMillis());
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.setClick(this);
         mToolBar = findViewById(R.id.toolbar);
@@ -43,4 +46,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Logger.e(TAG, "onResume" + System.currentTimeMillis());
+    }
 }
