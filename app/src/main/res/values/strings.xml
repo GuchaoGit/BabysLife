@@ -3,7 +3,11 @@
     <string name="str_nul">暂无</string>
     <string name="str_add">新增</string>
     <string name="prince">小王子</string>
+    <string name="prince_height">小王子\n身高</string>
+    <string name="prince_weight">小王子\n体重</string>
     <string name="princess">小公主</string>
+    <string name="princess_height">小公主\n身高</string>
+    <string name="princess_weight">小公主\n体重</string>
     <string name="new_baby">添加小宝贝</string>
     <string name="please_input_name">请输入宝贝姓名</string>
     <string name="please_sel_birth">请选择出生日期</string>
@@ -34,4 +38,9 @@
     <string name="file_name">文件名:</string>
     <string name="warning">警告</string>
     <string name="warning_restore_data">恢复备份将覆盖原有数据\n确定要恢复吗？</string>
+    <string name="child_height_boy">儿童身高(cm)比照表（男）</string>
+    <string name="child_height_girl">儿童身高(cm)比照表（女）</string>
+    <string name="child_weight_boy">儿童体重(kg)比照表（男）</string>
+    <string name="child_weight_girl">儿童体重(kg)比照表（女）</string>
+    <string name="std_data_instruction">说明： “中位数”，表示处于人群的平均水平；如果在“-1sd~中位数~+1sd”即：中位数上下一个标准差范围之内，属于“正常范围”，代表了68%的儿童；如果在“（-2sd~-1sd）或者（+1sd~+2sd）”即：中位数上下两个标准差范围之内，则定义为“偏矮（高）”，代表了27.4%的儿童；如果在“（-3sd~-2sd）或者（+2sd~+3sd）”即：中位数上下三个标准差之内，则定义为“矮（高）”，代表了4.6%的儿童。极少儿童在三个标准差（&#60;-3sd>+3sd）之外（比例小于0.5%）。</string>
 </resources>

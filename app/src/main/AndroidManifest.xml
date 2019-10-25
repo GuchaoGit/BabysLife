@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.StdDataDetailActivity" />
         <activity android:name=".ui.SplashActivity" />
         <activity android:name=".ui.BackupActivity" />
         <activity android:name=".MainActivity">

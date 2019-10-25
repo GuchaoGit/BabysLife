@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.graphics.Typeface" />
+
+        <import type="com.guc.babyslife.model.StdData" />
+
+        <variable
+            name="data"
+            type="StdData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_5dp"
+        android:weightSum="9">
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{data.ageDesc}"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_age_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{data.ageDesc4M}"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_m3sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.m3sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_m2sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.m2sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_m1sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.m1sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_avg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.average)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_p1sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.p1sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_p2sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.p2sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+        <TextView
+            android:id="@+id/tv_p3sd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{String.valueOf(data.p3sd)}"
+            android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
+
+    </LinearLayout>
+</layout>

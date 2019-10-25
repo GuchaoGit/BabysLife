@@ -34,42 +34,97 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn_prince"
-                android:layout_width="@dimen/dimen_160dp"
+            <LinearLayout
+                android:id="@+id/ll_boy"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/dra_btn_prince"
-                android:drawableLeft="@drawable/prince"
-                android:drawablePadding="@dimen/dimen_20dp"
-                android:gravity="left|center_vertical"
-                android:padding="@dimen/dimen_10dp"
-                android:text="@string/prince"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/larger_text_size"
-                android:textStyle="bold|italic"
-                android:onClick="@{(view)->click.onClick(view)}"/>
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_princess"
-                android:layout_width="@dimen/dimen_160dp"
+                <Button
+                    android:id="@+id/btn_prince_height"
+                    android:layout_width="@dimen/dimen_160dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dra_btn_prince"
+                    android:drawableLeft="@drawable/prince"
+                    android:drawablePadding="@dimen/dimen_20dp"
+                    android:gravity="left|center_vertical"
+                    android:onClick="@{(view)->click.onClick(view)}"
+                    android:padding="@dimen/dimen_10dp"
+                    android:text="@string/prince_height"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/larger_text_size"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/btn_prince_weight"
+                    android:layout_width="@dimen/dimen_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_20dp"
+                    android:background="@drawable/dra_btn_prince"
+                    android:drawableLeft="@drawable/prince"
+                    android:drawablePadding="@dimen/dimen_20dp"
+                    android:gravity="left|center_vertical"
+                    android:onClick="@{(view)->click.onClick(view)}"
+                    android:padding="@dimen/dimen_10dp"
+                    android:text="@string/prince_weight"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/larger_text_size"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_girl"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_prince"
+                android:layout_below="@+id/ll_boy"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/dimen_50dp"
-                android:background="@drawable/dra_btn_princess"
-                android:drawableLeft="@drawable/princess"
-                android:drawablePadding="@dimen/dimen_20dp"
-                android:gravity="left|center_vertical"
-                android:padding="@dimen/dimen_10dp"
-                android:text="@string/princess"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/larger_text_size"
-                android:textStyle="bold|italic"
-                android:onClick="@{(view)->click.onClick(view)}"/>
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_princess_height"
+                    android:layout_width="@dimen/dimen_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/dra_btn_princess"
+                    android:drawableLeft="@drawable/princess"
+                    android:drawablePadding="@dimen/dimen_20dp"
+                    android:gravity="left|center_vertical"
+                    android:onClick="@{(view)->click.onClick(view)}"
+                    android:padding="@dimen/dimen_10dp"
+                    android:text="@string/princess_height"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/larger_text_size"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/btn_princess_weight"
+                    android:layout_width="@dimen/dimen_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/dimen_20dp"
+                    android:background="@drawable/dra_btn_princess"
+                    android:drawableLeft="@drawable/princess"
+                    android:drawablePadding="@dimen/dimen_20dp"
+                    android:gravity="left|center_vertical"
+                    android:onClick="@{(view)->click.onClick(view)}"
+                    android:padding="@dimen/dimen_10dp"
+                    android:text="@string/princess_weight"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/larger_text_size"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+
+            <com.guc.babyslife.widget.JustifyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_girl"
+                android:layout_margin="@dimen/dimen_10dp"
+                android:text="@string/std_data_instruction" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

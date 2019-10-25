@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--允许启用窗口内容转换效果-->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
     <style name="AppTheme.Transparent">
         <item name="android:windowIsTranslucent">false</item>

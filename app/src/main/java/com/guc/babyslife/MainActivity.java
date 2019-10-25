@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.guc.babyslife.app.BaseActivity;
-import com.guc.babyslife.app.ToastUtils;
+import com.guc.babyslife.app.Constants;
 import com.guc.babyslife.databinding.MainBinding;
 import com.guc.babyslife.ui.AddNewBabyActivity;
+import com.guc.babyslife.ui.StdDataDetailActivity;
 import com.guc.babyslife.widget.ToolBar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -27,11 +28,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_prince:
-                ToastUtils.toast("小王子");
+            case R.id.btn_prince_height:
+                StdDataDetailActivity.jump(this, Constants.STD_BOY_HEIGHT);
                 break;
-            case R.id.btn_princess:
-                ToastUtils.toast("小公主");
+            case R.id.btn_prince_weight:
+                StdDataDetailActivity.jump(this, Constants.STD_BOY_WEIGHT);
+                break;
+            case R.id.btn_princess_height:
+                StdDataDetailActivity.jump(this, Constants.STD_GIRL_HEIGHT);
+                break;
+            case R.id.btn_princess_weight:
+                StdDataDetailActivity.jump(this, Constants.STD_GIRL_WEIGHT);
                 break;
         }
     }

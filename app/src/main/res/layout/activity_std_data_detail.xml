@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.StdDataDetailActivity">
+
+    <data class="StdDataDetailBinding">
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="stdAdapter"
+            type="com.guc.babyslife.ui.adapter.AdapterStdDatas" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.guc.babyslife.widget.ToolBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftType="finish"
+            app:title="@{title}" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adapter="@{stdAdapter}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    </LinearLayout>
+</layout>
