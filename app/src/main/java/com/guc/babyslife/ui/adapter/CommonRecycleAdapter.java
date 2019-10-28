@@ -15,6 +15,7 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
     protected int mLayoutId;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewBindingAdapter.ItemClickListener itemClickListener;
+    private RecyclerViewBindingAdapter.ItemLongClickListener itemLongClickListener;
 
     public CommonRecycleAdapter(Context context, List<T> dataList, int layoutId) {
         this.mContext = context;
@@ -25,6 +26,10 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
     public void setOnItemClickListener(RecyclerViewBindingAdapter.ItemClickListener listener) {
         this.itemClickListener = listener;
+    }
+
+    public void setOnItemLongClickListener(RecyclerViewBindingAdapter.ItemLongClickListener listener) {
+        this.itemLongClickListener = listener;
     }
 
     @Override
@@ -51,7 +56,9 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
             @Override
             public void onItemLongClickListener(int position) {
-
+                if (itemLongClickListener != null) {
+                    itemLongClickListener.onItemLongClick(CommonRecycleAdapter.this, holder.itemView, position);
+                }
             }
         });
     }

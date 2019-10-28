@@ -38,6 +38,7 @@
     <string name="file_name">文件名:</string>
     <string name="warning">警告</string>
     <string name="warning_restore_data">恢复备份将覆盖原有数据\n确定要恢复吗？</string>
+    <string name="warning_delete_data">确定要删除该条记录吗？</string>
     <string name="child_height_boy">儿童身高(cm)比照表（男）</string>
     <string name="child_height_girl">儿童身高(cm)比照表（女）</string>
     <string name="child_weight_boy">儿童体重(kg)比照表（男）</string>

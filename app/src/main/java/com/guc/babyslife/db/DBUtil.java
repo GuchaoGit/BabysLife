@@ -23,7 +23,7 @@ public class DBUtil {
     private GrowDataDao mGrowDataDao;
 
     private DBUtil(Context context) {
-        mOpenHelper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+        mOpenHelper = new DbOpenHelper(context, DB_NAME, null);
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         mDaoSession = daoMaster.newSession();
@@ -52,6 +52,14 @@ public class DBUtil {
                 .build().list();
     }
 
+    /**
+     * 根据id删除数据
+     *
+     * @param id dataId
+     */
+    public void deleteGrowDataById(long id) {
+        mGrowDataDao.deleteByKey(id);
+    }
     /**
      * 新增数据
      *

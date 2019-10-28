@@ -1,5 +1,6 @@
 package com.guc.babyslife.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -21,7 +22,7 @@ import com.guc.babyslife.ui.fragment.AddRecordDialogFragment;
  * Created by guc on 2019/10/15.
  * 描述：婴儿详细信息
  */
-public class BabyDetailActivity extends BaseActivity implements View.OnClickListener, RecyclerViewBindingAdapter.ItemClickListener {
+public class BabyDetailActivity extends BaseActivity implements View.OnClickListener, RecyclerViewBindingAdapter.ItemClickListener, RecyclerViewBindingAdapter.ItemLongClickListener {
     private static final String TAG = "BabyDetailActivity";
     private BabyDetailBinding mBinding;
     private Baby mBaby;
@@ -45,6 +46,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBinding.setRecordAdapter(mAdapter);
         mBinding.setClick(this);
         mBinding.setItemClickListener(this);
+        mBinding.setItemLongClickListener(this);
     }
 
     @Override
@@ -57,5 +59,25 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onItemClick(RecyclerView.Adapter adapter, View view, int position) {
         ToastUtils.toast("测量日期：" + mAdapter.getItem(position).getMeasureDate());
+    }
+
+    @Override
+    public void onItemLongClick(RecyclerView.Adapter adapter, View view, int position) {
+        new AlertDialog.Builder(mContext).setTitle(R.string.warning)
+                .setMessage(R.string.warning_delete_data)
+                .setNegativeButton(R.string.cancel, (dialog, v) -> dialog.dismiss())
+                .setPositiveButton(R.string.sure, (dialog, v) -> {
+                    DBUtil.getInstance(mContext).deleteGrowDataById(mAdapter.getItem(position).getId());
+                    ToastUtils.toast("删除成功");
+                    update();
+                    dialog.dismiss();
+                })
+                .create()
+                .show();
+    }
+
+    //更新列表
+    private void update() {
+        mAdapter.update(mDBUtils.getGrowDataByUuid(mBaby.uuid));
     }
 }

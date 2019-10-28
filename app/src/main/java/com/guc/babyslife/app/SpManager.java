@@ -67,6 +67,7 @@ public class SpManager {
 
     public List<Baby> getBabies() {
         String babiesStr = mSharedPreferences.getString(KEY_BABIES, "[]");
+        Logger.e(TAG, babiesStr);
         return mGson.fromJson(babiesStr, new TypeToken<List<Baby>>() {
         }.getType());
     }

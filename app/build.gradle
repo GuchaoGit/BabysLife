@@ -6,8 +6,8 @@ android {
         applicationId "com.guc.babyslife"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -58,7 +58,7 @@ android {
 greendao {
     schemaVersion 1 //当前数据库版本
     daoPackage 'com.guc.babyslife.greendao'//设置DaoMaster、DaoSession、Dao包名
-//    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
 }
 repositories {
     flatDir {
@@ -79,7 +79,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     //json
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     //依赖注入
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.jakewharton:butterknife-compiler:8.8.1'
@@ -89,7 +89,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'//没有使用特殊Header，可以不加这行
     //添加greendao数据库支持
     implementation 'org.greenrobot:greendao:3.2.2' // 添加库
-
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
     //腾讯广告
     implementation(name: 'GDTSDK.union.4.90.960', ext: 'aar')
 
