@@ -1,7 +1,10 @@
 package com.guc.babyslife.ui.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,37 +14,51 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guc.babyslife.R;
+import com.guc.babyslife.app.Logger;
+import com.guc.babyslife.app.Profile;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.db.DBUtil;
 import com.guc.babyslife.model.Baby;
 import com.guc.babyslife.model.GrowData;
 import com.guc.babyslife.utils.AgeCalculateUtils;
+import com.guc.babyslife.utils.FileUtils;
+import com.guc.babyslife.utils.ImageUtils;
 
+import java.io.File;
 import java.util.Calendar;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by guc on 2019/10/21.
  * 描述：Fragment是实现dialog
  */
 public class AddRecordDialogFragment extends DialogFragment {
+    private static final String TAG = "AddRecordDialogFragment";
+    private static final int REQUEST_CODE = 0x101;
     @BindView(R.id.sel_date_tv)
     TextView mSelDateTv;
     @BindView(R.id.height_et)
     EditText mHeightEt;
+    @BindView(R.id.iv_photo)
+    ImageView mPhotoIv;
     @BindView(R.id.weight_et)
     EditText mWeightEt;
     Unbinder unbinder;
     private int mNowYear, mNowMonth, mNowDay;
     private int mSelYear, mSelMonth, mSelDay;
     private String mSelDate;
+    private String mPhotoPath, mOriginPath;
     private DatePickerDialog mDatePickerDialog;
     private Baby mBaby;
     private OnAddSuccessListener mOnAddSuccessListener;
@@ -89,7 +106,7 @@ public class AddRecordDialogFragment extends DialogFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.sel_date_tv, R.id.add_btn, R.id.cancel_btn})
+    @OnClick({R.id.sel_date_tv, R.id.add_btn, R.id.cancel_btn, R.id.iv_photo,})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sel_date_tv:
@@ -101,6 +118,24 @@ public class AddRecordDialogFragment extends DialogFragment {
             case R.id.cancel_btn:
                 this.dismiss();
                 break;
+            case R.id.iv_photo:
+                Intent intent = new Intent(Intent.ACTION_PICK, null);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //背景图片选择返回
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            //图片的路径
+            Uri mPhotoUri = data.getData();
+            mPhotoIv.setImageURI(mPhotoUri);
+            mOriginPath = ImageUtils.getRealPathFromUri(getContext(), mPhotoUri);
+            Logger.e(TAG, mOriginPath);
         }
     }
 
@@ -131,6 +166,16 @@ public class AddRecordDialogFragment extends DialogFragment {
             ToastUtils.toast("请输入合理的体重");
             return;
         }
+        if (!TextUtils.isEmpty(mOriginPath)) {
+            File dstFile = new File(Profile.getInstance().getImagesDir(), UUID.randomUUID().toString());
+            boolean success = FileUtils.copyFile(new File(mOriginPath), dstFile);
+            if (success) {
+                mPhotoPath = dstFile.getAbsolutePath();
+                Logger.e(TAG, mPhotoPath);
+            } else {
+                Logger.e(TAG, "文件复制失败");
+            }
+        }
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, mSelYear);
@@ -138,7 +183,7 @@ public class AddRecordDialogFragment extends DialogFragment {
         calendar.set(Calendar.DAY_OF_MONTH, mSelDay);
         int age = AgeCalculateUtils.caculateAge(mBaby, calendar);
         String ageDes = AgeCalculateUtils.getAgeDesc(mBaby, calendar);
-        GrowData growData = new GrowData(null, mBaby.uuid, age, age, ageDes, hf, wf, System.currentTimeMillis(), mSelYear + "-" + (mSelMonth + 1) + "-" + mSelDay);
+        GrowData growData = new GrowData(null, mBaby.uuid, age, age, ageDes, hf, wf, System.currentTimeMillis(), mSelYear + "-" + (mSelMonth + 1) + "-" + mSelDay, mPhotoPath);
         long result = DBUtil.getInstance(getContext()).addGrowData(growData);
         if (result > 0) {
             ToastUtils.toast("添加成功");

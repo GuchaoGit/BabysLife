@@ -16,6 +16,7 @@ public class Profile {
     public static final String FN_DB = DBUtil.DB_NAME + ".bak";
     private static final String TAG = "Profile";
     private static final String ROOT_DIR = "Backup4BabyLife";    // 根目录
+    private static final String DIR_IMAGE = "/images";    // 图片目录
     private String mDatabasePath;
     private static Profile mInstance;
     private String mBackupPath;
@@ -58,6 +59,10 @@ public class Profile {
 
     public String getBackupPath() {
         return mBackupPath;
+    }
+
+    public String getImagesDir() {
+        return mBackupPath + DIR_IMAGE;
     }
 
     public String getDatabasePath() {

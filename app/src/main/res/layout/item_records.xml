@@ -5,6 +5,12 @@
 
         <import type="com.guc.babyslife.model.GrowData" />
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.guc.babyslife.utils.ImageUtils" />
+
         <variable
             name="data"
             type="GrowData" />
@@ -13,15 +19,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/dimen_5dp">
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_5dp"
+            android:layout_weight="1"
             android:minHeight="@dimen/dimen_50dp"
             android:text='@{data.age +@string/day+ "\n" + data.ageDesc + "\n" + @string/height+ data.height+"cm\n"+@string/weight+data.weight+"kg"}' />
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="@dimen/dimen_80dp"
+            android:layout_height="@dimen/dimen_80dp"
+            android:background="@color/colorGrayDark"
+            android:imageBitmap="@{ImageUtils.getImageBitmapFromPath(data.photo)}"
+            android:scaleType="centerCrop"
+            android:visibility='@{!TextUtils.isEmpty(data.photo) ? View.VISIBLE:View.GONE}' />
     </LinearLayout>
 </layout>

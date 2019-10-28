@@ -23,11 +23,12 @@ public class GrowData {
     private float weight;//体重 kg
     private long addTime;
     private String measureDate;//测量日期
+    private String photo;//图片
 
-    @Generated(hash = 2037878645)
+    @Generated(hash = 875006577)
     public GrowData(Long id, @NotNull String uuid, int code, int age,
                     String ageDesc, float height, float weight, long addTime,
-                    String measureDate) {
+                    String measureDate, String photo) {
         this.id = id;
         this.uuid = uuid;
         this.code = code;
@@ -37,6 +38,7 @@ public class GrowData {
         this.weight = weight;
         this.addTime = addTime;
         this.measureDate = measureDate;
+        this.photo = photo;
     }
 
     @Generated(hash = 320260142)
@@ -113,5 +115,13 @@ public class GrowData {
 
     public void setMeasureDate(String measureDate) {
         this.measureDate = measureDate;
+    }
+
+    public String getPhoto() {
+        return this.photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

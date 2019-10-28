@@ -21,6 +21,7 @@
     <string name="add">添加</string>
     <string name="height">身高</string>
     <string name="weight">体重</string>
+    <string name="recent_photo">近照</string>
 
     <string name="has_add_baby">已添加的宝贝</string>
     <string name="grow_data_records">成长记录</string>
