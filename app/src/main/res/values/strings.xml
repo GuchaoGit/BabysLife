@@ -22,9 +22,10 @@
     <string name="height">身高</string>
     <string name="weight">体重</string>
     <string name="recent_photo">近照</string>
+    <string name="measure_date_f">测量日期：%s</string>
 
     <string name="has_add_baby">已添加的宝贝</string>
-    <string name="grow_data_records">成长记录</string>
+    <string name="grow_data_records">成长记录(长按可删除)</string>
     <string name="baby_detail">宝贝信息</string>
     <string name="please_input">请输入</string>
     <string name="cancel">取消</string>

@@ -1,5 +1,6 @@
 package com.guc.babyslife;
 
+import android.Manifest;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,12 +9,15 @@ import android.view.View;
 import com.guc.babyslife.app.BaseActivity;
 import com.guc.babyslife.app.Constants;
 import com.guc.babyslife.app.Logger;
+import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.databinding.MainBinding;
 import com.guc.babyslife.ui.AddNewBabyActivity;
 import com.guc.babyslife.ui.StdDataDetailActivity;
 import com.guc.babyslife.widget.ToolBar;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener, BaseActivity.PermissionListener {
     private static final String TAG = "MainActivity";
     private MainBinding mBinding;
     private ToolBar mToolBar;
@@ -26,6 +30,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mBinding.setClick(this);
         mToolBar = findViewById(R.id.toolbar);
         mToolBar.setOnRightClickedListener(() -> startActivity(new Intent(this, AddNewBabyActivity.class)));
+        requestRuntimePermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, this, false);
     }
 
     @Override
@@ -50,5 +55,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         Logger.e(TAG, "onResume" + System.currentTimeMillis());
+    }
+
+    @Override
+    public void onGranted() {
+
+    }
+
+    @Override
+    public void onDenied(List<String> deniedPermissions) {
+        ToastUtils.toastLong("你拒绝了访问设备照片，将无法展示记录中的图片\n可前往“备份”再次开启");
     }
 }

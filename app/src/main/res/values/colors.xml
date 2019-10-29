@@ -11,6 +11,7 @@
     <color name="colorDarkBlue">#1565C0</color>
     <!--黑、灰色-->
     <color name="colorBlack">#000000</color>
+    <color name="colorBlack35">#f0000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlackLight">#333333</color>
     <color name="colorGray">#999999</color>

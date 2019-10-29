@@ -10,10 +10,18 @@
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
-    <style name="AppTheme.Transparent">
-        <item name="android:windowIsTranslucent">false</item>
+    <!-- <style name="AppTheme.Transparent">
+         <item name="android:windowIsTranslucent">false</item>
+         <item name="android:windowBackground">@color/transparent</item>
+         <item name="android:windowDisablePreview">true</item>
+     </style>-->
+    <style name="AppTheme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>//透明
     </style>
     <!--EditText样式-->
     <style name="EditTextStyle">

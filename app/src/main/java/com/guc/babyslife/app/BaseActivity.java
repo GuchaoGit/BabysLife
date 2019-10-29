@@ -37,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
     private PermissionListener mListener;
     private String[] mPermissions;
+    private boolean isForce;//是否强制
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +91,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void requestRuntimePermissions(String[] permissions, PermissionListener listener) {
+        requestRuntimePermissions(permissions, listener, true);
+    }
+
+    public void requestRuntimePermissions(String[] permissions, PermissionListener listener, boolean isForce) {
+        this.isForce = isForce;
         mPermissions = permissions;
         mListener = listener;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -121,7 +127,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         String[] permissions = mDeniedPermissions.toArray(new String[mDeniedPermissions.size()]);
         if (rationale) {
-            showRationalDialog(permissions);
+            if (isForce)
+                showRationalDialog(permissions);
         } else {
             requestPermissions(permissions, REQUEST_CODE);
         }

@@ -58,7 +58,8 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onItemClick(RecyclerView.Adapter adapter, View view, int position) {
-        ToastUtils.toast("测量日期：" + mAdapter.getItem(position).getMeasureDate());
+        PictureViewActivity.jump(mContext, mAdapter.getItem(position).getPhoto(), mAdapter.getItem(position).getMeasureDate());
+//        ToastUtils.toast("测量日期：" + mAdapter.getItem(position).getMeasureDate());
     }
 
     @Override
