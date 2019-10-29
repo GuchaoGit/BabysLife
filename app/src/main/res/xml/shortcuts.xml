@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/icon_backup"
+        android:shortcutId="backup"
+        android:shortcutLongLabel="@string/backup_recovery"
+        android:shortcutShortLabel="@string/backup_recovery">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.guc.babyslife.ui.BackupActivity"
+            android:targetPackage="com.guc.babyslife" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/icon_add"
+        android:shortcutId="add_baby"
+        android:shortcutLongLabel="@string/new_baby"
+        android:shortcutShortLabel="@string/new_baby">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.guc.babyslife.ui.AddNewBabyActivity"
+            android:targetPackage="com.guc.babyslife" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

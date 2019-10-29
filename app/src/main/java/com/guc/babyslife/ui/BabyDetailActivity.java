@@ -14,9 +14,18 @@ import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.databinding.BabyDetailBinding;
 import com.guc.babyslife.db.DBUtil;
 import com.guc.babyslife.model.Baby;
+import com.guc.babyslife.model.GrowData;
 import com.guc.babyslife.ui.adapter.AdapterRecords;
 import com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter;
 import com.guc.babyslife.ui.fragment.AddRecordDialogFragment;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by guc on 2019/10/15.
@@ -28,6 +37,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
     private Baby mBaby;
     private AdapterRecords mAdapter;
     private DBUtil mDBUtils;
+    private Disposable mDisposable;
 
     public static void jump(Context context, Baby baby) {
         Intent intent = new Intent(context, BabyDetailActivity.class);
@@ -42,11 +52,12 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_baby_detail);
         mBinding.setDetail(mBaby);
         mDBUtils = DBUtil.getInstance(this);
-        mAdapter = new AdapterRecords(this, mDBUtils.getGrowDataByUuid(mBaby.uuid));
+        mAdapter = new AdapterRecords(this, null);
         mBinding.setRecordAdapter(mAdapter);
         mBinding.setClick(this);
         mBinding.setItemClickListener(this);
         mBinding.setItemLongClickListener(this);
+        update();
     }
 
     @Override
@@ -79,6 +90,20 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
 
     //更新列表
     private void update() {
-        mAdapter.update(mDBUtils.getGrowDataByUuid(mBaby.uuid));
+        mDisposable = Observable.create((ObservableEmitter<List<GrowData>> emitter) -> {
+                    Thread.sleep(10);
+                    emitter.onNext(mDBUtils.getGrowDataByUuid(mBaby.uuid));
+                }
+        )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe((List<GrowData> babies) ->
+                        mAdapter.update(babies));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mDisposable != null) mDisposable.dispose();
     }
 }
