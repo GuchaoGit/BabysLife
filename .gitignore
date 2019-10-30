@@ -13,3 +13,5 @@
 /captures
 .externalNativeBuild
 /.idea/vcs.xml
+/.idea/gradle.xml
+app/src/main/java/com/guc/babyslife/greendao/
