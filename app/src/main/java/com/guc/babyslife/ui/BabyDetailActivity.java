@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -38,6 +39,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
     private AdapterRecords mAdapter;
     private DBUtil mDBUtils;
     private Disposable mDisposable;
+    private DividerItemDecoration dividerItemDecoration;
 
     public static void jump(Context context, Baby baby) {
         Intent intent = new Intent(context, BabyDetailActivity.class);
@@ -51,9 +53,11 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBaby = getIntent().getParcelableExtra("baby");
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_baby_detail);
         mBinding.setDetail(mBaby);
+        dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mDBUtils = DBUtil.getInstance(this);
         mAdapter = new AdapterRecords(this, null);
         mBinding.setRecordAdapter(mAdapter);
+        mBinding.setDivider(dividerItemDecoration);
         mBinding.setClick(this);
         mBinding.setItemClickListener(this);
         mBinding.setItemLongClickListener(this);

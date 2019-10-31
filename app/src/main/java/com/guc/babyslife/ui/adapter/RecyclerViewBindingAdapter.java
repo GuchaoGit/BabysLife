@@ -11,11 +11,14 @@ import android.view.View;
  */
 public class RecyclerViewBindingAdapter {
 
-    @BindingAdapter(value = {"android:onItemClick", "android:onItemLongClick"}, requireAll = false)
-    public static void setupAdapter(RecyclerView recyclerView, final ItemClickListener itemClickListener, final ItemLongClickListener itemLongClickListener) {
+    @BindingAdapter(value = {"android:onItemClick", "android:onItemLongClick", "android:itemDecoration"}, requireAll = false)
+    public static void setupAdapter(RecyclerView recyclerView, final ItemClickListener itemClickListener, final ItemLongClickListener itemLongClickListener, RecyclerView.ItemDecoration itemDecoration) {
         RecyclerView.Adapter adapter = recyclerView.getAdapter();
         if (adapter == null || !(adapter instanceof CommonRecycleAdapter)) {
             return;
+        }
+        if (itemDecoration != null) {
+            recyclerView.addItemDecoration(itemDecoration);
         }
         CommonRecycleAdapter quickAdapter = (CommonRecycleAdapter) adapter;
         quickAdapter.setOnItemClickListener(itemClickListener);

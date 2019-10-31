@@ -25,6 +25,10 @@
         <variable
             name="itemLongClickListener"
             type="com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter.ItemLongClickListener" />
+
+        <variable
+            name="divider"
+            type="android.support.v7.widget.RecyclerView.ItemDecoration" />
     </data>
 
     <LinearLayout
@@ -140,6 +144,7 @@
             android:layout_height="wrap_content"
             android:onItemClick="@{itemClickListener}"
             android:onItemLongClick="@{itemLongClickListener}"
+            android:itemDecoration="@{divider}"
             app:adapter="@{recordAdapter}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
     </LinearLayout>

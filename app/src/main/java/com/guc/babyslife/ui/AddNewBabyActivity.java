@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -74,6 +75,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
     private void initRcv() {
         RecyclerView recyclerView = findViewById(R.id.rcv_baby);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mAdapter = new AdapterBabies(this, SpManager.getInstance().getBabies());
         recyclerView.setAdapter(mAdapter);
     }
