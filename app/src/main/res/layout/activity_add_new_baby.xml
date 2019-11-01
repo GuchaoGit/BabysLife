@@ -107,6 +107,13 @@
             android:text="@string/please_sel_birth" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10dp"
+        android:text="@string/tips_age_desc_deviation"
+        android:textColor="@color/colorPrimary" />
+
     <Button
         android:id="@+id/add_btn"
         android:layout_width="@dimen/dimen_160dp"

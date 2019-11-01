@@ -22,6 +22,7 @@ import com.guc.babyslife.app.SpManager;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.model.Baby;
 import com.guc.babyslife.ui.adapter.AdapterBabies;
+import com.guc.babyslife.utils.AgeCalculateUtils;
 import com.guc.babyslife.widget.ToolBar;
 
 import java.util.Calendar;
@@ -138,6 +139,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
 
     //计算年龄
     private void caculateAge() {
+        mAge = 0;
         StringBuilder ageDescSb = new StringBuilder();
         Calendar calendarBirth = Calendar.getInstance();
         calendarBirth.set(Calendar.YEAR, mBirthYear);
@@ -153,7 +155,7 @@ public class AddNewBabyActivity extends AppCompatActivity {
         }
         if (mNowDay < mBirthDay) {
             month -= 1;
-            day += 30;
+            day += AgeCalculateUtils.getMaxDayOfMonth(mBirthYear, mBirthMonth);
         }
         ageDescSb.append(year == 0 ? "" : year + "岁");
         ageDescSb.append(month != 0 ? month + "月" : year == 0 ? "" : "零");

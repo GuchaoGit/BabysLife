@@ -67,7 +67,7 @@ public class AgeCalculateUtils {
         }
         if (mNowDay < baby.birthDay) {
             month -= 1;
-            day += 30;
+            day += getMaxDayOfMonth(baby.birthYear, baby.birthMonth);
         }
         ageDescSb.append(year == 0 ? "" : year + "岁");
         ageDescSb.append(month != 0 ? month + "月" : year == 0 ? "" : "零");
@@ -78,5 +78,48 @@ public class AgeCalculateUtils {
 
     public static boolean isNow(Calendar calendar, int year, int month, int day) {
         return calendar.get(Calendar.YEAR) == year && calendar.get(Calendar.MONTH) == month && calendar.get(Calendar.DAY_OF_MONTH) == day;
+    }
+
+    public static int getMaxDayOfMonth(int year, int month) {
+        int max = 30;
+        switch (month) {
+            case 0://1月
+            case 2://3月
+            case 4://5月
+            case 6://7月
+            case 7://8月
+            case 9://10月
+            case 11://12月
+                max = 31;
+                break;
+            case 1://2月
+                if (isLeapYear(year)) {
+                    max = 29;
+                } else {
+                    max = 28;
+                }
+                break;
+            case 3://4月
+            case 5://6月
+            case 8://9月
+            case 10://11月
+                max = 30;
+                break;
+
+        }
+        return max;
+    }
+
+    /**
+     * @param year 年
+     * @return 返 true :平年  false:润年
+     */
+    private static boolean isLeapYear(int year) {
+        if ((year % 4 == 0 && year % 100 != 0)) {
+            return false;
+        } else if (year % 400 == 0) {
+            return false;
+        }
+        return true;
     }
 }

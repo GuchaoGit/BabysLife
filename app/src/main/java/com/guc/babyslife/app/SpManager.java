@@ -2,11 +2,11 @@ package com.guc.babyslife.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guc.babyslife.model.Baby;
+import com.guc.babyslife.utils.AgeCalculateUtils;
 
 import java.util.Calendar;
 import java.util.List;
@@ -53,9 +53,11 @@ public class SpManager {
      * 备份恢复用
      */
     public boolean restoreBabies(List<Baby> babies) {
+        Calendar calendarNow = Calendar.getInstance();
         if (babies == null || babies.size() == 0) return false;
         for (Baby baby : babies) {
-            caculateAge(baby, Calendar.getInstance());
+            baby.age = AgeCalculateUtils.caculateAge(baby, calendarNow);
+            baby.ageDesc = AgeCalculateUtils.getAgeDesc(baby, calendarNow);
         }
         SharedPreferences.Editor edit = mSharedPreferences.edit();
         String babiesStr = mGson.toJson(babies);
@@ -84,11 +86,12 @@ public class SpManager {
         edit.apply();
     }
 
-    public void updateBabies() {
+    void updateBabies() {
         Calendar calendarNow = Calendar.getInstance();
         List<Baby> babies = getBabies();
         for (Baby baby : babies) {
-            caculateAge(baby, calendarNow);
+            baby.age = AgeCalculateUtils.caculateAge(baby, calendarNow);
+            baby.ageDesc = AgeCalculateUtils.getAgeDesc(baby, calendarNow);
         }
         SharedPreferences.Editor edit = mSharedPreferences.edit();
         String babiesStr = mGson.toJson(babies);
@@ -96,52 +99,5 @@ public class SpManager {
         edit.putString(KEY_BABIES, babiesStr);
         edit.apply();
     }
-
-    //计算年龄
-    private void caculateAge(Baby baby, Calendar calendarNow) {
-        StringBuilder ageDescSb = new StringBuilder();
-        Calendar calendarBirth = Calendar.getInstance();
-        calendarBirth.set(Calendar.YEAR, baby.birthYear);
-        calendarBirth.set(Calendar.MONTH, baby.birthMonth);
-        calendarBirth.set(Calendar.DAY_OF_MONTH, baby.birthDay);
-
-        int mAge = 0;
-        int mNowYear, mNowMonth, mNowDay;
-        mNowYear = calendarNow.get(Calendar.YEAR);
-        mNowMonth = calendarNow.get(Calendar.MONTH);
-        mNowDay = calendarNow.get(Calendar.DAY_OF_MONTH);
-        String mAgeDesc;
-        int year = mNowYear - baby.birthYear;
-        int month = mNowMonth - baby.birthMonth;
-        int day = mNowDay - baby.birthDay;
-        if (mNowMonth < baby.birthMonth) {
-            year -= 1;
-            month += 12;
-        }
-        if (mNowDay < baby.birthDay) {
-            month -= 1;
-            day += 30;
-        }
-        ageDescSb.append(year == 0 ? "" : year + "岁");
-        ageDescSb.append(month != 0 ? month + "月" : year == 0 ? "" : "零");
-        ageDescSb.append(day != 0 ? day + "天" : year == 0 && month == 0 ? "出生" : "");
-        mAgeDesc = ageDescSb.toString();
-        baby.ageDesc = mAgeDesc;
-        if (isNow(calendarBirth, mNowYear, mNowMonth, mNowDay)) {
-            mAge = 0;
-        } else {
-            while (!isNow(calendarBirth, mNowYear, mNowMonth, mNowDay)) {
-                mAge++;
-                calendarBirth.add(Calendar.DAY_OF_MONTH, 1);
-            }
-        }
-        baby.age = mAge;
-        Log.e(TAG, "caculateAge: " + mAge + "天");
-    }
-
-    private boolean isNow(Calendar calendar, int year, int month, int day) {
-        return calendar.get(Calendar.YEAR) == year && calendar.get(Calendar.MONTH) == month && calendar.get(Calendar.DAY_OF_MONTH) == day;
-    }
-
 
 }
