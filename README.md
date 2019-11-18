@@ -5,4 +5,4 @@
 3、添加成长记录。  
 4、实现数据备份与恢复。  
 
-
+[BabyLife_V1.3.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191118_release_V1.3.apk)
