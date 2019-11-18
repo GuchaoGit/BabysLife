@@ -37,8 +37,9 @@
             android:layout_width="@dimen/dimen_80dp"
             android:layout_height="@dimen/dimen_80dp"
             android:background="@color/colorGrayDark"
-            android:imageBitmap="@{ImageUtils.getImageBitmapFromPath(data.photo)}"
+            android:imagePath="@{data.photo}"
             android:scaleType="centerCrop"
             android:visibility='@{!TextUtils.isEmpty(data.photo) ? View.VISIBLE:View.GONE}' />
+        <!-- android:imageBitmap="@{ImageUtils.getImageBitmapFromPath(data.photo)}"-->
     </LinearLayout>
 </layout>
