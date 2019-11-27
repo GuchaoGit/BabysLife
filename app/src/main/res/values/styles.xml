@@ -9,12 +9,16 @@
         <!--允许启用窗口内容转换效果-->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
     <!-- <style name="AppTheme.Transparent">
          <item name="android:windowIsTranslucent">false</item>
          <item name="android:windowBackground">@color/transparent</item>
          <item name="android:windowDisablePreview">true</item>
      </style>-->
+    <style name="MyTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorGrayDark</item>
+    </style>
     <style name="AppTheme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowContentTransitions">true</item>
