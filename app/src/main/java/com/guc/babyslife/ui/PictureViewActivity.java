@@ -2,24 +2,17 @@ package com.guc.babyslife.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.guc.babyslife.R;
-import com.guc.babyslife.utils.ImageUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import uk.co.senab.photoview.PhotoView;
 
 public class PictureViewActivity extends AppCompatActivity {
@@ -53,31 +46,7 @@ public class PictureViewActivity extends AppCompatActivity {
     }
 
     private void loadPicture() {
-        Observable.create((ObservableEmitter<Bitmap> emitter) -> {
-            emitter.onNext(ImageUtils.getImageBitmapFromPath(mPicPath));
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Bitmap>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Bitmap bitmap) {
-                        mPvPhoto.setImageBitmap(bitmap);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+        Glide.with(this).load(mPicPath).into(mPvPhoto);
     }
 
     @OnClick(R.id.btn_back)

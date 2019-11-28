@@ -30,6 +30,7 @@ import java.util.Calendar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by guc on 2019/10/15.
@@ -63,14 +64,21 @@ public class AddNewBabyActivity extends AppCompatActivity {
     private int mAge = 0;//天数
     private String mAgeDesc;//年龄描述
     private AdapterBabies mAdapter;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_baby);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         initView();
         initRcv();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     private void initRcv() {

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.guc.babyslife.R;
 
 import butterknife.BindView;
@@ -157,6 +156,7 @@ public class ToolBar extends FrameLayout {
         if(mLeftFunType == FUNCTION_FINISH){
             Activity mCurAty = (Activity) mCxt;
             mCurAty.finish();
+            mCxt = null;
         }else if (mLeftFunType ==FUNCTION_FUN){
             if (mOnLeftClickedListener!=null){
                 mOnLeftClickedListener.onLeftClicked();
