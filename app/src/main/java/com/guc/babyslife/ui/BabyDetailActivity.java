@@ -20,6 +20,7 @@ import com.guc.babyslife.ui.adapter.AdapterRecords;
 import com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter;
 import com.guc.babyslife.ui.fragment.AddRecordDialogFragment;
 
+import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -62,6 +63,21 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBinding.setItemClickListener(this);
         mBinding.setItemLongClickListener(this);
         update();
+        initCounterTip();
+    }
+
+    private void initCounterTip() {
+        Calendar calendarNow = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(calendarNow.get(Calendar.YEAR), mBaby.birthMonth, mBaby.birthDay);
+        if (calendarNow.before(calendar)) {
+            mBinding.setYear(calendar.get(Calendar.YEAR));
+        } else {
+            mBinding.setYear(calendar.get(Calendar.YEAR) + 1);
+        }
+
+        mBinding.setMonth(mBaby.birthMonth + 1);
+        mBinding.setDay(mBaby.birthDay);
     }
 
     @Override

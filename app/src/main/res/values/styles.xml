@@ -124,4 +124,9 @@
     <style name="StyleDivider.Light" parent="StyleDivider">
         <item name="android:background">@color/colorGrayLighter</item>
     </style>
+
+    <style name="NoEdgeRecycleView">
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
 </resources>

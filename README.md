@@ -6,3 +6,9 @@
 4、实现数据备份与恢复。  
 
 [BabyLife_V1.3.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191118_release_V1.3.apk)
+
+
+# 版本更新
+## V1.4
+* 宝贝详情添加下次生日倒计时展示
+[BabyLife_V1.4.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191220_release_V1.4.apk)
