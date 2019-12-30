@@ -6,7 +6,7 @@ import com.guc.babyslife.widget.ViewCounterTips;
 
 /**
  * Created by guc on 2019/12/20.
- * 描述：TextView databing 属性
+ * 描述：ViewCounterTips databing 属性
  */
 public class ViewCounterTipsBindingAdapter {
     @BindingAdapter(value = {"android:endYear", "android:endMonth", "android:endDay"}, requireAll = true)
