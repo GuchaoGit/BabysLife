@@ -37,4 +37,13 @@
         <attr name="stickColor" format="color" />
         <attr name="cupRadius" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="is_circle" format="boolean" />
+        <attr name="radius" format="dimension" />
+        <attr name="left_top_radius" format="dimension" />
+        <attr name="right_top_radius" format="dimension" />
+        <attr name="right_bottom_radius" format="dimension" />
+        <attr name="left_bottom_radius" format="dimension" />
+    </declare-styleable>
 </resources>

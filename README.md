@@ -12,3 +12,7 @@
 ## V1.4
 * 宝贝详情添加下次生日倒计时展示
 [BabyLife_V1.4.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191220_release_V1.4.apk)
+
+## V1.5
+* 添加育儿宝典功能
+[BabyLife_V1.5.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200103_release_V1.5.apk)

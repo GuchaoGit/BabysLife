@@ -24,6 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:rightType="string"
+            app:leftIcon="@drawable/icon_rearing"
+            app:leftType="function"
             app:title="@string/app_name" />
 
         <TextView

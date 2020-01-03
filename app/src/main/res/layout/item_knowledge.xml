@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.guc.babyslife.widget.CornerImageView
+        android:id="@+id/iv_picture"
+        android:layout_width="120dp"
+        android:layout_height="@dimen/dimen_85dp"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:scaleType="centerCrop"
+        app:radius="@dimen/dimen_5dp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/StyleCommonText"
+        android:layout_width="match_parent"
+        android:layout_alignTop="@id/iv_picture"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_toRightOf="@id/iv_picture"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/str_nul"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/StyleCommonText.GrayDark"
+        android:layout_alignBottom="@id/iv_picture"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:text="2019-11-13" />
+
+    <View
+        style="@style/StyleDivider.Light"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp" />
+</RelativeLayout>

@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guc.babyslife.app.Constants;
 import com.guc.babyslife.model.StdData;
+import com.guc.babyslife.model.VideoInfo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +28,19 @@ public class AssersUtil {
     private static String FILE_BOY_STD_WEIGHT = "boy_std_weight.json";
     private static String FILE_GIRL_STD_HEIGHT = "girl_std_height.json";
     private static String FILE_GIRL_STD_WEIGHT = "girl_std_weight.json";
+    private static String FILE_REARING_SOURCE = "data_source.json";
 
+    /**
+     * 育儿宝典小视频
+     *
+     * @param context context
+     * @return 数据
+     */
+    public static List<VideoInfo> getRearingDatas(Context context) {
+        String jsonData = getStringFromAssets(context, FILE_REARING_SOURCE);
+        return gson.fromJson(jsonData, new TypeToken<List<VideoInfo>>() {
+        }.getType());
+    }
     public static List<StdData> getStdDatas(Context context, int type) {
         List<StdData> datas;
         switch (type) {

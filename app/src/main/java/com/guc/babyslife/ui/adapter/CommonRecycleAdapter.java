@@ -13,7 +13,7 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
     protected Context mContext;
     protected List<T> mDataList;
     protected int mLayoutId;
-    private LayoutInflater mLayoutInflater;
+    protected LayoutInflater mLayoutInflater;
     private RecyclerViewBindingAdapter.ItemClickListener itemClickListener;
     private RecyclerViewBindingAdapter.ItemLongClickListener itemLongClickListener;
 

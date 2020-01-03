@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <org.salient.artplayer.VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/dimen_10dp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/StyleCommonText.Gray"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/video_view"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="标题"
+        android:textSize="20sp" />
+
+    <View
+        style="@style/StyleDivider.Light"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp" />
+</RelativeLayout>

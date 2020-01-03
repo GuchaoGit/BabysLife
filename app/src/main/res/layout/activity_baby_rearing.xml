@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.guc.babyslife.widget.ToolBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftType="finish"
+        app:title="@string/rearing_knowledge" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_video"
+        style="@style/NoEdgeRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

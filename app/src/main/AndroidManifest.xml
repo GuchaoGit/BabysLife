@@ -71,6 +71,11 @@
             android:name="com.qq.e.ads.LandscapeADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.RearingActivity"
+            android:configChanges="orientation|screenSize"
+            android:description="@string/rearing_baby" />
+        <activity android:name=".ui.ActivityDetailInBrowser" />
     </application>
 
 </manifest>
