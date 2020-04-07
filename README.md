@@ -16,3 +16,7 @@
 ## V1.5
 * 添加育儿宝典功能
 [BabyLife_V1.5.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200103_release_V1.5.apk)
+
+## V1.6
+* 添加BMI计算功能
+[BabyLife_V1.6.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200103_release_V1.6.apk)
