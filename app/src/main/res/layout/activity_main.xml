@@ -29,14 +29,13 @@
             app:title="@string/app_name" />
 
         <TextView
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text='@{age??""}' />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/ll_boy"
@@ -128,5 +127,25 @@
                 android:layout_margin="@dimen/dimen_10dp"
                 android:text="@string/std_data_instruction" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_10dp">
+
+            <Button
+                android:id="@+id/btn_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dra_btn_prince"
+                android:gravity="center"
+                android:onClick="@{(view)->click.onClick(view)}"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/bmi"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/middle_text_size"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

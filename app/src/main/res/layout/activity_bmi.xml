@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.guc.babyslife.widget.ToolBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftType="finish"
+        app:title="@string/bmi" />
+
+    <LinearLayout
+        android:id="@+id/ll_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_10dp">
+
+        <TextView
+            style="@style/StyleCommonText.GrayDark"
+            android:text="@string/height" />
+
+        <EditText
+            android:id="@+id/height_et"
+            style="@style/EditTextStyle.WithoutBg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:hint="@string/please_input"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_10dp">
+
+        <TextView
+            style="@style/StyleCommonText.GrayDark"
+            android:text="@string/weight" />
+
+        <EditText
+            android:id="@+id/weight_et"
+            style="@style/EditTextStyle.WithoutBg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:hint="@string/please_input"
+            android:inputType="numberDecimal"
+            android:maxLength="6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_calculate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:background="@drawable/dra_btn_prince"
+        android:text="@string/bmi_btn"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/large_text_size" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        style="@style/StyleCommonText.GrayDark"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:text="@string/bmi_result"
+        android:textSize="@dimen/middle_text_size" />
+
+    <TextView
+        android:id="@+id/tv_suggest"
+        style="@style/StyleCommonText.GrayDark"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:text=""
+        android:textSize="@dimen/middle_text_size" />
+</LinearLayout>

@@ -50,4 +50,12 @@
     <string name="child_weight_girl">儿童体重(kg)比照表（女）</string>
     <string name="tips_age_desc_deviation">注：年龄描述可能会有误差</string>
     <string name="std_data_instruction">说明： “中位数”，表示处于人群的平均水平；如果在“-1sd~中位数~+1sd”即：中位数上下一个标准差范围之内，属于“正常范围”，代表了68%的儿童；如果在“（-2sd~-1sd）或者（+1sd~+2sd）”即：中位数上下两个标准差范围之内，则定义为“偏矮（高）”，代表了27.4%的儿童；如果在“（-3sd~-2sd）或者（+2sd~+3sd）”即：中位数上下三个标准差之内，则定义为“矮（高）”，代表了4.6%的儿童。极少儿童在三个标准差（&#60;-3sd>+3sd）之外（比例小于0.5%）。</string>
+
+    <string name="bmi">身高体重指数(BMI)</string>
+    <string name="bmi_btn">计算BMI的值</string>
+    <string name="advice_heavy">你偏重</string>
+    <string name="advice_light">你偏瘦</string>
+    <string name="bmi_result">你的BMI的值是:%.2f</string>
+    <string name="advice_average">很标准</string>
+
 </resources>

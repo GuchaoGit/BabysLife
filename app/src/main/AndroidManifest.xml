@@ -76,6 +76,9 @@
             android:configChanges="orientation|screenSize"
             android:description="@string/rearing_baby" />
         <activity android:name=".ui.ActivityDetailInBrowser" />
+        <activity
+            android:name=".ui.BmiActivity"
+            android:description="@string/bmi" />
     </application>
 
 </manifest>
