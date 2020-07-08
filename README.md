@@ -20,3 +20,8 @@
 ## V1.6
 * 添加BMI计算功能
 [BabyLife_V1.6.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200407_release_V1.6.apk)
+
+## V1.7
+* 标准数据表更新至2岁
+* 育儿知识更新
+[BabyLife_V1.7.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200708_release_V1.7.apk)
