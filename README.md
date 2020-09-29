@@ -5,23 +5,25 @@
 3、添加成长记录。  
 4、实现数据备份与恢复。  
 
-[BabyLife_V1.3.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191118_release_V1.3.apk)
-
-
 # 版本更新
 ## V1.4
 * 宝贝详情添加下次生日倒计时展示
-[BabyLife_V1.4.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20191220_release_V1.4.apk)
 
 ## V1.5
 * 添加育儿宝典功能
-[BabyLife_V1.5.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200103_release_V1.5.apk)
 
 ## V1.6
 * 添加BMI计算功能
-[BabyLife_V1.6.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200407_release_V1.6.apk)
 
 ## V1.7
 * 标准数据表更新至2岁
 * 育儿知识更新
 [BabyLife_V1.7.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20200708_release_V1.7.apk)
+
+# 关于我  
+Name: Guchao  
+Email: happygc913@gmail.com / happygc@126.com  
+CSDN: [snow_lyGirl](https://blog.csdn.net/qq_31028313)  
+GitHub: [GuchaoGit](https://github.com/GuchaoGit?tab=repositories)  
+Gitee:[GuChaoGitee](https://gitee.com/guchaogitee/projects)  
+加入QQ群:128937635  
