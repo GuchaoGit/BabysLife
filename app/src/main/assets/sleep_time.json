@@ -1,0 +1,72 @@
+[
+  {
+    "id": -1,
+    "age": "年龄",
+    "recommend": "推荐",
+    "possibleFit": "可能合适",
+    "notRecommend": "不推荐 "
+  },
+  {
+    "id": 1,
+    "age": "新生儿\n(0~3个月)",
+    "recommend": "14~17小时",
+    "possibleFit": "11~13小时\n18~19小时",
+    "notRecommend": "不足11小时\n超过19小时"
+  },
+  {
+    "id": 2,
+    "age": "婴儿\n(4~11个月)",
+    "recommend": "12~15小时",
+    "possibleFit": "10~11小时\n16~18小时",
+    "notRecommend": "不足10小时\n超过18小时"
+  },
+  {
+    "id": 3,
+    "age": "幼童\n(1~2岁)",
+    "recommend": "11~14小时",
+    "possibleFit": "9~10小时\n15~16小时",
+    "notRecommend": "不足9小时\n超过16小时"
+  },
+  {
+    "id": 4,
+    "age": "学龄前儿童\n(3~5岁)",
+    "recommend": "10~13小时",
+    "possibleFit": "8~9小时\n14小时",
+    "notRecommend": "不足8小时\n超过14小时"
+  },
+  {
+    "id": 5,
+    "age": "学龄儿童\n(6~13岁)",
+    "recommend": "9~11小时",
+    "possibleFit": "7~8小时\n12小时",
+    "notRecommend": "不足7小时\n超过12小时"
+  },
+  {
+    "id": 6,
+    "age": "青少年\n(14~17岁)",
+    "recommend": "8~10小时",
+    "possibleFit": "7小时\n11小时",
+    "notRecommend": "不足7小时\n超过11小时"
+  },
+  {
+    "id": 7,
+    "age": "青年人\n(18~25岁)",
+    "recommend": "7~9小时",
+    "possibleFit": "6小时\n10~11小时",
+    "notRecommend": "不足6小时\n超过11小时"
+  },
+  {
+    "id": 8,
+    "age": "成年人\n(26~64岁)",
+    "recommend": "7~9小时",
+    "possibleFit": "6小时\n10小时",
+    "notRecommend": "不足6小时\n超过10小时"
+  },
+  {
+    "id": 9,
+    "age": "老年人\n(65岁以上)",
+    "recommend": "7~9小时",
+    "possibleFit": "5~6小时\n9小时",
+    "notRecommend": "不足5小时\n超过9小时"
+  }
+]

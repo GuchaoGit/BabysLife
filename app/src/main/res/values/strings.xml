@@ -58,4 +58,8 @@
     <string name="bmi_result">你的BMI的值是:%.2f</string>
     <string name="advice_average">很标准</string>
 
+    <string name="sleep_time_chart">睡眠时间表</string>
+    <string name="sleep_time_tips">说明：只要保持规律的睡眠作息和足够的睡眠时长就算不上熬夜。</string>
+
+
 </resources>

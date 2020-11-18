@@ -14,6 +14,7 @@ import com.guc.babyslife.databinding.MainBinding;
 import com.guc.babyslife.ui.AddNewBabyActivity;
 import com.guc.babyslife.ui.BmiActivity;
 import com.guc.babyslife.ui.RearingActivity;
+import com.guc.babyslife.ui.SleepTimeActivity;
 import com.guc.babyslife.ui.StdDataDetailActivity;
 import com.guc.babyslife.widget.ToolBar;
 
@@ -53,6 +54,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.btn_bmi:
                 BmiActivity.jump(this);
+                break;
+            case R.id.btn_sleep_time:
+                SleepTimeActivity.jump(this);
                 break;
         }
     }

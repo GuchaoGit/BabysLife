@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guc.babyslife.app.Constants;
+import com.guc.babyslife.model.SleepTime;
 import com.guc.babyslife.model.StdData;
 import com.guc.babyslife.model.VideoInfo;
 
@@ -29,6 +30,7 @@ public class AssersUtil {
     private static String FILE_GIRL_STD_HEIGHT = "girl_std_height.json";
     private static String FILE_GIRL_STD_WEIGHT = "girl_std_weight.json";
     private static String FILE_REARING_SOURCE = "data_source.json";
+    private static String FILE_SLEEP_TIME = "sleep_time.json";
 
     /**
      * 育儿宝典小视频
@@ -41,6 +43,19 @@ public class AssersUtil {
         return gson.fromJson(jsonData, new TypeToken<List<VideoInfo>>() {
         }.getType());
     }
+
+    /**
+     * 获取睡眠时间数据
+     *
+     * @param context context
+     * @return 数据
+     */
+    public static List<SleepTime> getSleepTimeData(Context context) {
+        String jsonData = getStringFromAssets(context, FILE_SLEEP_TIME);
+        return gson.fromJson(jsonData, new TypeToken<List<SleepTime>>() {
+        }.getType());
+    }
+
     public static List<StdData> getStdDatas(Context context, int type) {
         List<StdData> datas;
         switch (type) {

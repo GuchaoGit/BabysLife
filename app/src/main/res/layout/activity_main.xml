@@ -146,6 +146,21 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/middle_text_size"
                 android:textStyle="bold|italic" />
+
+            <Button
+                android:id="@+id/btn_sleep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:background="@drawable/dra_btn_princess"
+                android:gravity="center"
+                android:onClick="@{(view)->click.onClick(view)}"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/sleep_time_chart"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/middle_text_size"
+                android:textStyle="bold|italic" />
+
         </LinearLayout>
     </LinearLayout>
 </layout>
