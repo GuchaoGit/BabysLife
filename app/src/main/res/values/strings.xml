@@ -17,8 +17,12 @@
     <string name="age">宝贝年龄</string>
     <string name="birth">出生日期</string>
     <string name="measure_date">测量日期</string>
+    <string name="measure_date_1">测量日期：</string>
     <string name="day">天</string>
     <string name="add">添加</string>
+    <string name="growth_curve">成长曲线</string>
+    <string name="height_curve">身高变化曲线</string>
+    <string name="weight_curve">体重变化曲线</string>
     <string name="height">身高</string>
     <string name="weight">体重</string>
     <string name="recent_photo">近照</string>
@@ -38,11 +42,12 @@
     <string name="not_backup">尚未备份</string>
     <string name="not_backup_db">尚未备份数据库</string>
     <string name="file_name">文件名:</string>
+    <string name="file_size">文件大小:</string>
     <string name="rearing_baby">育儿</string>
     <string name="rearing_knowledge">育儿宝典</string>
     <string name="warning">警告</string>
     <string name="detail">详情</string>
-    <string name="warning_restore_data">恢复备份将覆盖原有数据\n确定要恢复吗？</string>
+    <string name="warning_restore_data">恢复备份将覆盖现有数据\n确定要恢复吗？</string>
     <string name="warning_delete_data">确定要删除该条记录吗？</string>
     <string name="child_height_boy">儿童身高(cm)比照表（男）</string>
     <string name="child_height_girl">儿童身高(cm)比照表（女）</string>
@@ -60,6 +65,9 @@
 
     <string name="sleep_time_chart">睡眠时间表</string>
     <string name="sleep_time_tips">说明：只要保持规律的睡眠作息和足够的睡眠时长就算不上熬夜。</string>
+
+    <string name="common_loading">加载中...</string>
+    <string name="please_wait">请稍后...</string>
 
 
 </resources>

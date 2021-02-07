@@ -155,6 +155,18 @@
                         android:text="@string/grow_data_records" />
 
                     <Button
+                        android:id="@+id/btn_growth_curve"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_40dp"
+                        android:layout_marginTop="@dimen/dimen_30dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:layout_toLeftOf="@+id/btn_add"
+                        android:background="@drawable/dra_btn_curve"
+                        android:onClick="@{(view)->click.onClick(view)}"
+                        android:text="@string/growth_curve"
+                        android:textColor="@color/colorWhite" />
+
+                    <Button
                         android:id="@+id/btn_add"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_40dp"

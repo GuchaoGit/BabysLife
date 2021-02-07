@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.guc.babyslife.R;
 import com.guc.babyslife.databinding.ItemRecordsBinding;
 import com.guc.babyslife.model.GrowData;
+import com.guc.babyslife.ui.PictureViewActivity;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class AdapterRecords extends CommonRecycleAdapter<GrowData> {
     public void bindData(CommonViewHolder holder, GrowData data, int position) {
         ItemRecordsBinding binding = DataBindingUtil.getBinding(holder.itemView);
         binding.setData(mDataList.get(position));
+        binding.setClick(v -> {
+            PictureViewActivity.jump(mContext, data.getPhoto(), data.getMeasureDate()); //查看图片
+        });
         binding.executePendingBindings();
     }
 

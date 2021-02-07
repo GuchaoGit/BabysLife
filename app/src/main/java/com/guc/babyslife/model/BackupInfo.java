@@ -9,4 +9,5 @@ public class BackupInfo {
     public String path;
     public String fileName;
     public String time;
+    public String fileSize;
 }

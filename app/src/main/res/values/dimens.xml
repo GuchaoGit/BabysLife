@@ -9,6 +9,13 @@
     <dimen name="larger_text_size">20sp</dimen>
     <dimen name="largest_text_size">22sp</dimen>
 
+    <!--进度条对话框-->
+    <dimen name="loading_dialog_size">130dp</dimen>
+    <dimen name="loading_dialog_icon_size">50dp</dimen>
+    <dimen name="radius">4dp</dimen>        <!--圆角 -->
+    <dimen name="blank_s">5dp</dimen>
+    <dimen name="text_s">12sp</dimen>
+
     <!--边距-->
     <dimen name="common_padding">10dp</dimen>
     <dimen name="common_padding_half">5dp</dimen>

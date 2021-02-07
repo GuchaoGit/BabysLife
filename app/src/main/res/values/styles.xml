@@ -129,4 +129,20 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
     </style>
+
+    <!--加载框样式-->
+    <style name="LoadingDialog" parent="@style/TransDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!--透明Dialog-->
+    <style name="TransDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
 </resources>

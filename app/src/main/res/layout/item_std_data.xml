@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/colorGreen"
             android:text="@{String.valueOf(data.average)}"
             android:textStyle='@{data.age==-1? Typeface.defaultFromStyle(Typeface.BOLD):Typeface.defaultFromStyle(Typeface.NORMAL)}' />
 

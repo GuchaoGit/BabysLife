@@ -7,6 +7,7 @@
     <data class="BackupBinding">
 
         <import type="android.view.View" />
+
         <variable
             name="click"
             type="android.view.View.OnClickListener" />
@@ -64,21 +65,21 @@
         <TextView
             android:id="@+id/tv_backup_info"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:layout_marginRight="@dimen/dimen_10dp"
-            android:layout_height="wrap_content"
             android:onClick="@{(view)->click.onClick(view)}"
-            android:text='@{backupInfo.hasBackup ?(@string/backup_path + backupInfo.path + "\n"+@string/file_name + backupInfo.fileName +"\n"+backupInfo.time):@string/not_backup}' />
+            android:text='@{backupInfo.hasBackup ?(@string/backup_path + backupInfo.path + "\n"+@string/file_name + backupInfo.fileName +"\n"+@string/file_size + backupInfo.fileSize +"\n"+backupInfo.time):@string/not_backup}' />
 
         <TextView
             android:id="@+id/tv_backup_info_db"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
             android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:onClick="@{(view)->click.onClick(view)}"
-            android:text='@{backupInfo4Db.hasBackup ?(@string/backup_path + backupInfo4Db.path + "\n"+@string/file_name + backupInfo4Db.fileName +"\n"+backupInfo4Db.time):@string/not_backup_db}' />
+            android:text='@{backupInfo4Db.hasBackup ?(@string/backup_path + backupInfo4Db.path + "\n"+@string/file_name + backupInfo4Db.fileName +"\n"+@string/file_size + backupInfo4Db.fileSize +"\n"+backupInfo4Db.time):@string/not_backup_db}' />
 
         <Button
             android:id="@+id/btn_restore"

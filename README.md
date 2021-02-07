@@ -3,7 +3,11 @@
 1、查看儿童身高体重比重表。  
 2、记录基本信息。  
 3、添加成长记录。  
-4、实现数据备份与恢复。  
+4、实现数据备份与恢复。
+5、生日提醒
+6、BMI计算
+7、添加身高、体重变化曲线
+
 
 # 版本更新
 ## V1.4
@@ -21,7 +25,11 @@
 
 ## V1.8
 * 添加各年龄段人群所需睡眠时长表
-[BabyLife_V1.8.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20201118_release_V1.8.apk)
+
+## V1.9
+* UI美化
+* 添加身高、体重变化曲线
+[BabyLife_V1.9.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20210207_release_V1.9.apk)
 
 # 关于我  
 Name: Guchao  

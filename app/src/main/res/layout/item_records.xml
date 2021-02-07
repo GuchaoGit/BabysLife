@@ -12,6 +12,10 @@
         <import type="com.guc.babyslife.utils.ImageUtils" />
 
         <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="data"
             type="GrowData" />
     </data>
@@ -30,7 +34,7 @@
             android:layout_marginLeft="@dimen/dimen_5dp"
             android:layout_weight="1"
             android:minHeight="@dimen/dimen_50dp"
-            android:text='@{data.age +@string/day+ "\n" + data.ageDesc + "\n" + @string/height+ data.height+"cm\n"+@string/weight+data.weight+"kg"}' />
+            android:text='@{@string/measure_date_1 + data.measureDate + "\n" + data.ageDesc + "\n" + @string/height+ data.height+"cm\n"+@string/weight+data.weight+"kg"}' />
 
         <ImageView
             android:id="@+id/iv_photo"
@@ -39,6 +43,7 @@
             android:background="@color/colorGrayDark"
             android:imagePath="@{data.photo}"
             android:scaleType="centerCrop"
+            android:onClick="@{(view)->click.onClick(view)}"
             android:visibility='@{!TextUtils.isEmpty(data.photo) ? View.VISIBLE:View.GONE}' />
         <!-- android:imageBitmap="@{ImageUtils.getImageBitmapFromPath(data.photo)}"-->
     </LinearLayout>

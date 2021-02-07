@@ -62,7 +62,11 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
         switch (v.getId()) {
             case R.id.btn_backup:
                 saveBabies2File();
-                backupDB();
+                if (backupDB()) {
+                    ToastUtils.toast("备份成功");
+                } else {
+                    ToastUtils.toast("备份失败");
+                }
                 onGranted();
                 break;
             case R.id.btn_restore:
@@ -80,8 +84,8 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
     }
 
     //备份数据库
-    private void backupDB() {
-        FileUtils.copyFile(new File(Profile.getInstance().getDatabasePath()), new File(Profile.getInstance().getBackupPath(), Profile.FN_DB));
+    private boolean backupDB() {
+        return FileUtils.copyFile(new File(Profile.getInstance().getDatabasePath()), new File(Profile.getInstance().getBackupPath(), Profile.FN_DB));
     }
 
     private void saveBabies2File() {

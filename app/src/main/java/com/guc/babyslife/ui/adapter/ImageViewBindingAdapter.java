@@ -4,8 +4,8 @@ import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.guc.babyslife.R;
+import com.guc.babyslife.utils.MyImageLoader;
 
 /**
  * Created by guc on 2019/10/28.
@@ -20,6 +20,6 @@ public class ImageViewBindingAdapter {
         } else {
             imageView.setImageResource(R.drawable.icon_empty);
         }
-        Glide.with(imageView).load(path).into(imageView);
+        MyImageLoader.display(path, imageView);
     }
 }

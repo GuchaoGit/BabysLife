@@ -1,5 +1,8 @@
 package com.guc.babyslife.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
@@ -10,7 +13,7 @@ import org.greenrobot.greendao.annotation.NotNull;
  * 描述：成长数据
  */
 @Entity
-public class GrowData {
+public class GrowData implements Parcelable {
     @Id(autoincrement = true)//设置自增长
     private Long id;
     @NotNull
@@ -123,5 +126,47 @@ public class GrowData {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public static final Creator<GrowData> CREATOR = new Creator<GrowData>() {
+        public GrowData createFromParcel(Parcel source) {
+            return new GrowData(source);
+        }
+
+        public GrowData[] newArray(int size) {
+            return new GrowData[size];
+        }
+    };
+
+    protected GrowData(Parcel in) {
+        this.id = in.readLong();
+        this.uuid = in.readString();
+        this.code = in.readInt();
+        this.age = in.readInt();
+        this.ageDesc = in.readString();
+        this.height = in.readFloat();
+        this.weight = in.readFloat();
+        this.addTime = in.readLong();
+        this.measureDate = in.readString();
+        this.photo = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.uuid);
+        dest.writeInt(this.code);
+        dest.writeInt(this.age);
+        dest.writeString(this.ageDesc);
+        dest.writeFloat(this.height);
+        dest.writeFloat(this.weight);
+        dest.writeLong(this.addTime);
+        dest.writeString(this.measureDate);
+        dest.writeString(this.photo);
     }
 }

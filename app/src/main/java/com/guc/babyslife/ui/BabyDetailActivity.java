@@ -19,13 +19,17 @@ import com.guc.babyslife.model.GrowData;
 import com.guc.babyslife.ui.adapter.AdapterRecords;
 import com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter;
 import com.guc.babyslife.ui.fragment.AddRecordDialogFragment;
+import com.guc.babyslife.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -37,9 +41,9 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
     private static final String TAG = "BabyDetailActivity";
     private BabyDetailBinding mBinding;
     private Baby mBaby;
+    private ArrayList<GrowData> mGrowData;
     private AdapterRecords mAdapter;
     private DBUtil mDBUtils;
-    private Disposable mDisposable;
     private DividerItemDecoration dividerItemDecoration;
 
     public static void jump(Context context, Baby baby) {
@@ -82,15 +86,29 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        AddRecordDialogFragment fragment = AddRecordDialogFragment.getInstance(mBaby);
-        fragment.show(getSupportFragmentManager(), TAG);
-        fragment.setOnAddSuccessListener(() -> mAdapter.update(mDBUtils.getGrowDataByUuid(mBaby.uuid)));
+        switch (v.getId()) {
+            case R.id.btn_add://添加
+                AddRecordDialogFragment fragment = AddRecordDialogFragment.getInstance(mBaby);
+                fragment.show(getSupportFragmentManager(), TAG);
+                fragment.setOnAddSuccessListener(() -> mAdapter.update(mDBUtils.getGrowDataByUuid(mBaby.uuid)));
+                break;
+            case R.id.btn_growth_curve: // 成长曲线
+                if (mGrowData == null || mGrowData.size() == 0) {
+                    ToastUtils.toast("您还未添加成长记录");
+                } else {
+                    GrowthCurveActivity.jump(mContext, mBaby, mGrowData);
+                }
+                break;
+        }
+
     }
 
     @Override
     public void onItemClick(RecyclerView.Adapter adapter, View view, int position) {
-        PictureViewActivity.jump(mContext, mAdapter.getItem(position).getPhoto(), mAdapter.getItem(position).getMeasureDate());
-//        ToastUtils.toast("测量日期：" + mAdapter.getItem(position).getMeasureDate());
+        GrowData data = mAdapter.getItem(position);
+        double bmi = Utils.getBMI(data.getHeight(), data.getWeight());
+        String suggest = Utils.getBmiSuggest(bmi);
+        ToastUtils.toastLong("您的BMI为：" + bmi + "  " + suggest);
     }
 
     @Override
@@ -110,20 +128,38 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
 
     //更新列表
     private void update() {
-        mDisposable = Observable.create((ObservableEmitter<List<GrowData>> emitter) -> {
-                    Thread.sleep(10);
+        showCoffeeLoading();
+        Observable.create((ObservableEmitter<List<GrowData>> emitter) -> {
                     emitter.onNext(mDBUtils.getGrowDataByUuid(mBaby.uuid));
+                    Thread.sleep(2000);
+                    emitter.onComplete();
                 }
         )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe((List<GrowData> babies) ->
-                        mAdapter.update(babies));
+                .subscribe(new Observer<List<GrowData>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<GrowData> babies) {
+                        mGrowData = new ArrayList<>();
+                        mGrowData.addAll(babies);
+                        mAdapter.update(babies);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        hideCoffeeLoading();
+                    }
+                });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mDisposable != null) mDisposable.dispose();
-    }
 }

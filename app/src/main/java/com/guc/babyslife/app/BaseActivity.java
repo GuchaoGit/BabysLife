@@ -18,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.guc.babyslife.system.BaseSystem;
 import com.guc.babyslife.system.SystemManager;
 import com.guc.babyslife.system.SystemPages;
+import com.guc.babyslife.widget.dialog.CoffeeLoadingDialog;
+import com.guc.babyslife.widget.dialog.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -38,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private PermissionListener mListener;
     private String[] mPermissions;
     private boolean isForce;//是否强制
+    private LoadingDialog loadingDialog;
+    private CoffeeLoadingDialog coffeeLoadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -187,6 +191,48 @@ public abstract class BaseActivity extends AppCompatActivity {
                         startSetting();
                     }
                 }).show();
+    }
+
+    /**
+     * 显示加载框
+     */
+    public void showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this);
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
+    }
+
+    /**
+     * 隐藏显示框
+     */
+    public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
+
+    /**
+     * 显示加载框
+     */
+    public void showCoffeeLoading() {
+        if (coffeeLoadingDialog == null) {
+            coffeeLoadingDialog = new CoffeeLoadingDialog(this);
+        }
+        if (!coffeeLoadingDialog.isShowing()) {
+            coffeeLoadingDialog.show();
+        }
+    }
+
+    /**
+     * 隐藏显示框
+     */
+    public void hideCoffeeLoading() {
+        if (coffeeLoadingDialog != null && coffeeLoadingDialog.isShowing()) {
+            coffeeLoadingDialog.dismiss();
+        }
     }
 
     public interface PermissionListener {

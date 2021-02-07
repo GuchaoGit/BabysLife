@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.guc.babyslife.R;
+import com.guc.babyslife.utils.MyImageLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +46,7 @@ public class PictureViewActivity extends AppCompatActivity {
     }
 
     private void loadPicture() {
-        Glide.with(this).load(mPicPath).into(mPvPhoto);
+        MyImageLoader.display(mPicPath, mPvPhoto);
     }
 
     @OnClick(R.id.btn_back)

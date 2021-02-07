@@ -2,6 +2,7 @@ package com.guc.babyslife.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.support.annotation.NonNull;
 
 import com.guc.babyslife.greendao.DaoMaster;
@@ -25,6 +26,9 @@ public class DBUtil {
     private DBUtil(Context context) {
         mOpenHelper = new DbOpenHelper(context, DB_NAME, null);
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) { //9.0以上
+            db.disableWriteAheadLogging();
+        }
         DaoMaster daoMaster = new DaoMaster(db);
         mDaoSession = daoMaster.newSession();
         mGrowDataDao = mDaoSession.getGrowDataDao();

@@ -35,6 +35,7 @@ public class FileUtils {
             info.path = file.getParent();
             info.fileName = file.getName();
             info.time = mSdf.format(new Date(file.lastModified()));
+            info.fileSize = getFormatSize(file.length());
         }
         return info;
     }

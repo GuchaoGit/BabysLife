@@ -6,7 +6,7 @@
     <!--蓝色-->
     <color name="colorBlueText">#316cd9</color>
     <color name="colorBlue">#1886f4</color>
-    <color name="colorLightBlue">#CFE2E9</color>
+    <color name="colorLightBlue">#75BDF8</color>
     <color name="colorLightBluePress">#C4DDE6</color>
     <color name="colorDarkBlue">#1565C0</color>
     <!--黑、灰色-->
@@ -24,5 +24,11 @@
     <color name="transparent">#00000000</color>
     <color name="colorPink">#FFBBC8</color>
     <color name="colorPinkPress">#FDADBC</color>
+
+    <color name="colorGreen">#1A8C0D</color>
+    <color name="colorGreenPress">#2ADC16</color>
+
+    <color name="colorTrans60">#99000000</color>
+    <color name="colorBackground">#F3F4F6</color>
 
 </resources>

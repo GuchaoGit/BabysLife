@@ -22,7 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.SleepTimeActivity"></activity>
+        <activity
+            android:name=".ui.GrowthCurveActivity"
+            android:description="@string/growth_curve" />
+        <activity android:name=".ui.SleepTimeActivity" />
         <activity
             android:name=".ui.PictureViewActivity"
             android:screenOrientation="portrait"
