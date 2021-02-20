@@ -29,7 +29,7 @@
     <string name="measure_date_f">测量日期：%s</string>
 
     <string name="has_add_baby">已添加的宝贝</string>
-    <string name="grow_data_records">成长记录(长按可删除)</string>
+    <string name="grow_data_records">成长记录(长按可编辑/删除)</string>
     <string name="baby_detail">宝贝信息</string>
     <string name="please_input">请输入</string>
     <string name="cancel">取消</string>
@@ -48,6 +48,7 @@
     <string name="warning">警告</string>
     <string name="detail">详情</string>
     <string name="warning_restore_data">恢复备份将覆盖现有数据\n确定要恢复吗？</string>
+    <string name="warning_backup_data">备份将覆盖覆盖之前备份的文件\n确定要备份吗？</string>
     <string name="warning_delete_data">确定要删除该条记录吗？</string>
     <string name="child_height_boy">儿童身高(cm)比照表（男）</string>
     <string name="child_height_girl">儿童身高(cm)比照表（女）</string>

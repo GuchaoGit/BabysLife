@@ -24,9 +24,11 @@ import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.db.DBUtil;
 import com.guc.babyslife.model.Baby;
 import com.guc.babyslife.model.GrowData;
+import com.guc.babyslife.ui.PictureViewActivity;
 import com.guc.babyslife.utils.AgeCalculateUtils;
 import com.guc.babyslife.utils.FileUtils;
 import com.guc.babyslife.utils.ImageUtils;
+import com.guc.babyslife.utils.MyImageLoader;
 
 import java.io.File;
 import java.util.Calendar;
@@ -61,12 +63,22 @@ public class AddRecordDialogFragment extends DialogFragment {
     private String mPhotoPath, mOriginPath;
     private DatePickerDialog mDatePickerDialog;
     private Baby mBaby;
+    private GrowData mRecord;//修改时传递有
     private OnAddSuccessListener mOnAddSuccessListener;
 
     public static AddRecordDialogFragment getInstance(Baby baby) {
         AddRecordDialogFragment fg = new AddRecordDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable("baby", baby);
+        fg.setArguments(bundle);
+        return fg;
+    }
+
+    public static AddRecordDialogFragment getInstance(Baby baby, GrowData record) {
+        AddRecordDialogFragment fg = new AddRecordDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("baby", baby);
+        bundle.putParcelable("record", record);
         fg.setArguments(bundle);
         return fg;
     }
@@ -79,6 +91,7 @@ public class AddRecordDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBaby = getArguments().getParcelable("baby");
+        mRecord = getArguments().getParcelable("record");
     }
 
     @Nullable
@@ -96,8 +109,25 @@ public class AddRecordDialogFragment extends DialogFragment {
         mNowYear = mSelYear = calendar.get(Calendar.YEAR);
         mNowMonth = mSelMonth = calendar.get(Calendar.MONTH);
         mNowDay = mSelDay = calendar.get(Calendar.DAY_OF_MONTH);
+        if (mRecord != null) {
+            String[] date = mRecord.getMeasureDate().split("-");
+            try {
+                mSelYear = Integer.parseInt(date[0]);
+                mSelMonth = Integer.parseInt(date[1]) - 1;
+                mSelDay = Integer.parseInt(date[2]);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            mWeightEt.setText("" + mRecord.getWeight());
+            mHeightEt.setText("" + mRecord.getHeight());
+            if (!TextUtils.isEmpty(mRecord.getPhoto())) {
+                MyImageLoader.display(mRecord.getPhoto(), mPhotoIv);
+            }
+
+        }
         mSelDate = mSelYear + "-" + (mSelMonth + 1) + "-" + mSelDay;
         mSelDateTv.setText(mSelDate);
+
     }
 
     @Override
@@ -119,9 +149,13 @@ public class AddRecordDialogFragment extends DialogFragment {
                 this.dismiss();
                 break;
             case R.id.iv_photo:
-                Intent intent = new Intent(Intent.ACTION_PICK, null);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(intent, REQUEST_CODE);
+                if (mRecord != null && !TextUtils.isEmpty(mRecord.getPhoto())) {
+                    PictureViewActivity.jump(getContext(), mRecord.getPhoto(), mRecord.getMeasureDate()); //查看图片
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_PICK, null);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(intent, REQUEST_CODE);
+                }
                 break;
         }
     }
@@ -166,11 +200,14 @@ public class AddRecordDialogFragment extends DialogFragment {
             ToastUtils.toast("请输入合理的体重");
             return;
         }
+        if (mRecord != null) {
+            mPhotoPath = mRecord.getPhoto();  //编辑的图片
+        }
         if (!TextUtils.isEmpty(mOriginPath)) {
             File dstFile = new File(Profile.getInstance().getImagesDir(), UUID.randomUUID().toString());
             boolean success = FileUtils.copyFile(new File(mOriginPath), dstFile);
             if (success) {
-                mPhotoPath = dstFile.getAbsolutePath();
+                mPhotoPath = dstFile.getAbsolutePath(); //新选择的图片
                 Logger.e(TAG, mPhotoPath);
             } else {
                 Logger.e(TAG, "文件复制失败");
@@ -183,15 +220,27 @@ public class AddRecordDialogFragment extends DialogFragment {
         calendar.set(Calendar.DAY_OF_MONTH, mSelDay);
         int age = AgeCalculateUtils.caculateAge(mBaby, calendar);
         String ageDes = AgeCalculateUtils.getAgeDesc(mBaby, calendar);
-        GrowData growData = new GrowData(null, mBaby.uuid, age, age, ageDes, hf, wf, System.currentTimeMillis(), mSelYear + "-" + (mSelMonth + 1) + "-" + mSelDay, mPhotoPath);
-        long result = DBUtil.getInstance(getContext()).addGrowData(growData);
-        if (result > 0) {
-            ToastUtils.toast("添加成功");
+        Long id = null;
+        if (mRecord != null) {
+            id = mRecord.getId();
+        }
+        GrowData growData = new GrowData(id, mBaby.uuid, age, age, ageDes, hf, wf, System.currentTimeMillis(), mSelYear + "-" + (mSelMonth + 1) + "-" + mSelDay, mPhotoPath);
+        if (id == null) {
+            long result = DBUtil.getInstance(getContext()).addGrowData(growData);
+            if (result > 0) {
+                ToastUtils.toast("添加成功");
+                if (mOnAddSuccessListener != null) mOnAddSuccessListener.onSuccess();
+                this.dismiss();
+            } else {
+                ToastUtils.toast("添加失败");
+            }
+        } else {
+            DBUtil.getInstance(getContext()).updateGrowData(growData);
+            ToastUtils.toast("修改成功");
             if (mOnAddSuccessListener != null) mOnAddSuccessListener.onSuccess();
             this.dismiss();
-        } else {
-            ToastUtils.toast("添加失败");
         }
+
     }
 
     private void showSelBirthDialog() {

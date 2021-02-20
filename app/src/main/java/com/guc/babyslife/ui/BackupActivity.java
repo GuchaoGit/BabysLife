@@ -61,13 +61,20 @@ public class BackupActivity extends BaseActivity implements BaseActivity.Permiss
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_backup:
-                saveBabies2File();
-                if (backupDB()) {
-                    ToastUtils.toast("备份成功");
-                } else {
-                    ToastUtils.toast("备份失败");
-                }
-                onGranted();
+                new AlertDialog.Builder(this).setTitle(getString(R.string.warning))
+                        .setMessage(getString(R.string.warning_backup_data))
+                        .setNegativeButton(getString(R.string.cancel), (dialog, which) ->
+                                dialog.dismiss())
+                        .setPositiveButton(getString(R.string.sure), (dialog, which) -> {
+                            saveBabies2File();
+                            if (backupDB()) {
+                                ToastUtils.toast("备份成功");
+                            } else {
+                                ToastUtils.toast("备份失败");
+                            }
+                            onGranted();
+                            dialog.dismiss();
+                        }).create().show();
                 break;
             case R.id.btn_restore:
                 new AlertDialog.Builder(this).setTitle(getString(R.string.warning))

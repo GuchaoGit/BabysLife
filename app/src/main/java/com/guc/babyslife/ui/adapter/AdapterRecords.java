@@ -18,8 +18,18 @@ import java.util.List;
  * 描述：
  */
 public class AdapterRecords extends CommonRecycleAdapter<GrowData> {
+    private int position = -1;
+
     public AdapterRecords(Context context, List<GrowData> dataList) {
         super(context, dataList, R.layout.item_records);
+    }
+
+    public int getContextMenuPosition() {
+        return position;
+    }
+
+    public void setContextMenuPosition(int position) {
+        this.position = position;
     }
 
     @Override

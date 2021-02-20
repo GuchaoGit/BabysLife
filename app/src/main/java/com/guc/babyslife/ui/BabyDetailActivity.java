@@ -7,10 +7,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.guc.babyslife.R;
 import com.guc.babyslife.app.BaseActivity;
+import com.guc.babyslife.app.Logger;
 import com.guc.babyslife.app.ToastUtils;
 import com.guc.babyslife.databinding.BabyDetailBinding;
 import com.guc.babyslife.db.DBUtil;
@@ -68,6 +73,8 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBinding.setItemLongClickListener(this);
         update();
         initCounterTip();
+        RecyclerView r = this.findViewById(R.id.rcv_baby);
+        this.registerForContextMenu(r);
     }
 
     private void initCounterTip() {
@@ -113,17 +120,45 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onItemLongClick(RecyclerView.Adapter adapter, View view, int position) {
-        new AlertDialog.Builder(mContext).setTitle(R.string.warning)
-                .setMessage(R.string.warning_delete_data)
-                .setNegativeButton(R.string.cancel, (dialog, v) -> dialog.dismiss())
-                .setPositiveButton(R.string.sure, (dialog, v) -> {
-                    DBUtil.getInstance(mContext).deleteGrowDataById(mAdapter.getItem(position).getId());
-                    ToastUtils.toast("删除成功");
-                    update();
-                    dialog.dismiss();
-                })
-                .create()
-                .show();
+        Logger.e(TAG, "长按");
+        mAdapter.setContextMenuPosition(position);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        Logger.e(TAG, "创建ContextMenu");
+        menu.setHeaderTitle("操作");
+        menu.add(0, 1, Menu.NONE, "编辑");
+        menu.add(0, 2, Menu.NONE, "删除");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = mAdapter.getContextMenuPosition();
+        switch (item.getItemId()) {
+            case 1://编辑
+                AddRecordDialogFragment fragment = AddRecordDialogFragment.getInstance(mBaby, mAdapter.getItem(position));
+                fragment.show(getSupportFragmentManager(), TAG);
+                fragment.setOnAddSuccessListener(() -> mAdapter.update(mDBUtils.getGrowDataByUuid(mBaby.uuid)));
+                break;
+            case 2: //删除
+                new AlertDialog.Builder(mContext).setTitle(R.string.warning)
+                        .setMessage(R.string.warning_delete_data)
+                        .setNegativeButton(R.string.cancel, (dialog, v) -> dialog.dismiss())
+                        .setPositiveButton(R.string.sure, (dialog, v) -> {
+                            DBUtil.getInstance(mContext).deleteGrowDataById(mAdapter.getItem(position).getId());
+                            ToastUtils.toast("删除成功");
+                            update();
+                            dialog.dismiss();
+                        })
+                        .create()
+                        .show();
+                break;
+            default:
+                return super.onContextItemSelected(item);
+        }
+        return true;
     }
 
     //更新列表
@@ -147,7 +182,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
                     public void onNext(@NonNull List<GrowData> babies) {
                         mGrowData = new ArrayList<>();
                         mGrowData.addAll(babies);
-                        mAdapter.update(babies);
+                        mAdapter.update(mGrowData);
                     }
 
                     @Override

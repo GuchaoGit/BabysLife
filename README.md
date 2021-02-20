@@ -29,7 +29,12 @@
 ## V1.9
 * UI美化
 * 添加身高、体重变化曲线
-[BabyLife_V1.9.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20210207_release_V1.9.apk)
+
+## V1.10
+* UI美化
+* 身高、体重变化曲线优化
+* 添加记录编辑功能
+[BabyLife_V1.10.apk](https://github.com/GuchaoGit/BabysLife/blob/master/apk/BabyLife_20210220_release_V1.10.apk)
 
 # 关于我  
 Name: Guchao  

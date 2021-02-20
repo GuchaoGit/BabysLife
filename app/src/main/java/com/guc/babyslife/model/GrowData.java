@@ -13,7 +13,7 @@ import org.greenrobot.greendao.annotation.NotNull;
  * 描述：成长数据
  */
 @Entity
-public class GrowData implements Parcelable {
+public class GrowData implements Parcelable, Comparable<GrowData> {
     @Id(autoincrement = true)//设置自增长
     private Long id;
     @NotNull
@@ -168,5 +168,10 @@ public class GrowData implements Parcelable {
         dest.writeLong(this.addTime);
         dest.writeString(this.measureDate);
         dest.writeString(this.photo);
+    }
+
+    @Override
+    public int compareTo(GrowData o) {
+        return this.code - o.code;
     }
 }

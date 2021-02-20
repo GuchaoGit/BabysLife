@@ -20,8 +20,10 @@ import com.guc.babyslife.model.StdData;
 import com.guc.babyslife.utils.AssersUtil;
 import com.guc.babyslife.widget.GCLineChart;
 import com.guc.babyslife.widget.ToolBar;
+import com.guc.babyslife.widget.chart.MyMarkerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,6 +62,9 @@ public class GrowthCurveActivity extends BaseActivity {
         ButterKnife.bind(this);
         mBaby = getIntent().getParcelableExtra("baby");
         mGrowData = getIntent().getParcelableArrayListExtra("data");
+        if (mGrowData != null) {
+            Collections.sort(mGrowData);
+        }
         initData();
         initView();
     }
@@ -98,11 +103,13 @@ public class GrowthCurveActivity extends BaseActivity {
      * @param isHeight 是否是身高
      */
     private void loadChartData(GCLineChart chart, List<StdData> stdData, List<GrowData> growData, boolean isHeight) {
+        MyMarkerView mv = new MyMarkerView(this).setData(mBaby, stdData, growData, isHeight);
+        mv.setChartView(chart);
+        chart.setMarker(mv);
         chart.setScaleYEnabled(false);
         chart.setDrawGridBackground(false);
         XAxis xAxis = chart.getXAxis();
         xAxis.setDrawGridLines(false);
-        xAxis.setLabelCount(12, false);
         YAxis yAxisLeft = chart.getAxisLeft();
         YAxis yAxisRight = chart.getAxisRight();
         yAxisLeft.setDrawGridLines(true);
@@ -115,13 +122,17 @@ public class GrowthCurveActivity extends BaseActivity {
             yStd.add(new Entry(data.age, Float.parseFloat(data.average)));
         }
 
+        Entry entry;
         ArrayList<Entry> yData = new ArrayList<>();
-        for (GrowData data : growData) {
+        for (int i = 0; i < growData.size(); i++) {
+            GrowData data = growData.get(i);
             if (isHeight) {
-                yData.add(new Entry(data.getAge(), data.getHeight()));
+                entry = new Entry(data.getAge(), data.getHeight());
             } else {
-                yData.add(new Entry(data.getAge(), data.getWeight()));
+                entry = new Entry(data.getAge(), data.getWeight());
             }
+            entry.setData(true);
+            yData.add(entry);
         }
 
         LineDataSet setStd, setData;

@@ -64,6 +64,7 @@ public class DBUtil {
     public void deleteGrowDataById(long id) {
         mGrowDataDao.deleteByKey(id);
     }
+
     /**
      * 新增数据
      *
@@ -72,5 +73,9 @@ public class DBUtil {
      */
     public long addGrowData(GrowData growData) {
         return mGrowDataDao.insert(growData);
+    }
+
+    public void updateGrowData(GrowData growData) {
+        mGrowDataDao.update(growData);
     }
 }
