@@ -128,6 +128,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         Logger.e(TAG, "创建ContextMenu");
         menu.setHeaderTitle("操作");
+        menu.setHeaderIcon(R.drawable.icon_opt);
         menu.add(0, 1, Menu.NONE, "编辑");
         menu.add(0, 2, Menu.NONE, "删除");
     }

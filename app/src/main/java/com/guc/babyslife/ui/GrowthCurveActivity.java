@@ -11,6 +11,7 @@ import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.guc.babyslife.R;
 import com.guc.babyslife.app.BaseActivity;
 import com.guc.babyslife.app.Constants;
@@ -110,6 +111,14 @@ public class GrowthCurveActivity extends BaseActivity {
         chart.setDrawGridBackground(false);
         XAxis xAxis = chart.getXAxis();
         xAxis.setDrawGridLines(false);
+        xAxis.setGranularity(30);
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                int age = (int) value;
+                return getXValue(age);
+            }
+        });
         YAxis yAxisLeft = chart.getAxisLeft();
         YAxis yAxisRight = chart.getAxisRight();
         yAxisLeft.setDrawGridLines(true);
@@ -150,7 +159,8 @@ public class GrowthCurveActivity extends BaseActivity {
             setStd.setAxisDependency(AxisDependency.LEFT);
             //线条的颜色
             setStd.setColor(COLOR_STD);
-            //不绘制圆点
+            //绘制圆点
+            setStd.setCircleColor(COLOR_STD);
             setStd.setDrawCircles(false);
             setStd.setDrawCircleHole(false);
             //不绘制value
@@ -164,6 +174,7 @@ public class GrowthCurveActivity extends BaseActivity {
             //线条的颜色
             setData.setColor(Constants.GENDER_BOY.equals(mBaby.sex) ? COLOR_BOY : COLOR_GIRL);
             //绘制圆点
+            setData.setCircleColor(Constants.GENDER_BOY.equals(mBaby.sex) ? COLOR_BOY : COLOR_GIRL);
             setData.setDrawCircles(true);
             setData.setDrawCircleHole(false);
             //不绘制value
@@ -173,7 +184,26 @@ public class GrowthCurveActivity extends BaseActivity {
         }
         LineData data = new LineData(setStd, setData);
         chart.setData(data);
+        chart.setVisibleXRangeMinimum(30 * 12); //设置最小可见为1年 需放到设置数据之后
 
+    }
+
+    private String getXValue(int age) {
+        StringBuilder sb = new StringBuilder();
+        int year = age / (12 * 30);
+        int month = (age % (12 * 30)) / 30;
+        if (year == 0) {
+            sb.append(month);
+            sb.append("月");
+        } else {
+            sb.append(year);
+            sb.append("岁");
+            if (month != 0) {
+                sb.append(month);
+                sb.append("月");
+            }
+        }
+        return sb.toString();
     }
 
 }
