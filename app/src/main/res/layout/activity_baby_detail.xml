@@ -41,6 +41,10 @@
         <variable
             name="day"
             type="Integer" />
+
+        <variable
+            name="rightClickedListener"
+            type="com.guc.babyslife.widget.ToolBar.OnRightClickedListener" />
     </data>
 
     <LinearLayout
@@ -52,6 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:leftType="finish"
+            android:onRightClickedListener="@{rightClickedListener}"
+            app:rightString="@string/growth_curve"
+            app:rightType="string"
             app:title="@string/baby_detail" />
 
         <android.support.v4.widget.NestedScrollView
@@ -155,6 +162,7 @@
                         android:text="@string/grow_data_records" />
 
                     <Button
+                        android:visibility="gone"
                         android:id="@+id/btn_growth_curve"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_40dp"

@@ -25,6 +25,7 @@ import com.guc.babyslife.ui.adapter.AdapterRecords;
 import com.guc.babyslife.ui.adapter.RecyclerViewBindingAdapter;
 import com.guc.babyslife.ui.fragment.AddRecordDialogFragment;
 import com.guc.babyslife.utils.Utils;
+import com.guc.babyslife.widget.ToolBar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,7 +43,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by guc on 2019/10/15.
  * 描述：婴儿详细信息
  */
-public class BabyDetailActivity extends BaseActivity implements View.OnClickListener, RecyclerViewBindingAdapter.ItemClickListener, RecyclerViewBindingAdapter.ItemLongClickListener {
+public class BabyDetailActivity extends BaseActivity implements ToolBar.OnRightClickedListener, View.OnClickListener, RecyclerViewBindingAdapter.ItemClickListener, RecyclerViewBindingAdapter.ItemLongClickListener {
     private static final String TAG = "BabyDetailActivity";
     private BabyDetailBinding mBinding;
     private Baby mBaby;
@@ -71,6 +72,7 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
         mBinding.setClick(this);
         mBinding.setItemClickListener(this);
         mBinding.setItemLongClickListener(this);
+        mBinding.setRightClickedListener(this);
         update();
         initCounterTip();
         RecyclerView r = this.findViewById(R.id.rcv_baby);
@@ -108,6 +110,15 @@ public class BabyDetailActivity extends BaseActivity implements View.OnClickList
                 break;
         }
 
+    }
+
+    @Override
+    public void onRightClicked() {
+        if (mGrowData == null || mGrowData.size() == 0) {
+            ToastUtils.toast("您还未添加成长记录");
+        } else {
+            GrowthCurveActivity.jump(mContext, mBaby, mGrowData);
+        }
     }
 
     @Override

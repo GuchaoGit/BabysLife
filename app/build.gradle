@@ -12,8 +12,8 @@ android {
         applicationId "com.guc.babyslife"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 11
-        versionName "1.10"
+        versionCode 12
+        versionName "1.10.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
