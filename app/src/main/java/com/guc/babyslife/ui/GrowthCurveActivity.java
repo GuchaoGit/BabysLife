@@ -168,7 +168,7 @@ public class GrowthCurveActivity extends BaseActivity {
             //填充颜色
             setStd.setHighLightColor(Color.rgb(244, 117, 117));
 
-            setData = new LineDataSet(yData, isHeight ? "记录身高" : "记录体重");
+            setData = new LineDataSet(yData, isHeight ? mBaby.name + "的身高记录" : mBaby.name + "的体重记录");
             //数据对应的是左边还是右边的Y值
             setData.setAxisDependency(AxisDependency.LEFT);
             //线条的颜色
