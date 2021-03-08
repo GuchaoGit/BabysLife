@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 //读取签名配置并返回Properties
 def buildSign() {
-    def Properties buildProperties = new Properties()
+    Properties buildProperties = new Properties()
     buildProperties.load(new FileInputStream(file("../local.properties")))
     return buildProperties
 }

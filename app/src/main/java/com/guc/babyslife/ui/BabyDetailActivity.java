@@ -50,7 +50,6 @@ public class BabyDetailActivity extends BaseActivity implements ToolBar.OnRightC
     private ArrayList<GrowData> mGrowData;
     private AdapterRecords mAdapter;
     private DBUtil mDBUtils;
-    private DividerItemDecoration dividerItemDecoration;
 
     public static void jump(Context context, Baby baby) {
         Intent intent = new Intent(context, BabyDetailActivity.class);
@@ -64,7 +63,7 @@ public class BabyDetailActivity extends BaseActivity implements ToolBar.OnRightC
         mBaby = getIntent().getParcelableExtra("baby");
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_baby_detail);
         mBinding.setDetail(mBaby);
-        dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mDBUtils = DBUtil.getInstance(this);
         mAdapter = new AdapterRecords(this, null);
         mBinding.setRecordAdapter(mAdapter);
